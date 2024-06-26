@@ -1,0 +1,69 @@
+```java
+// The @RestController annotation is used to mark a class as a REST controller.
+// The @Autowired annotation is used to inject a dependency into a bean.
+@RestController
+@RequestMapping("/authors")
+public class AuthorController {
+
+    // The @Autowired annotation is used to inject an instance of the AuthorRepository interface into the authorRepository field.
+    @Autowired
+    private AuthorRepository authorRepository;
+
+    // The @PostMapping annotation is used to map a POST request to a method.
+    // The @RequestBody annotation is used to bind the request body to a method parameter.
+    @PostMapping
+    public Author createAuthor(@RequestBody Author author) {
+        // The authorRepository.save() method is used to save the Author object to the database.
+        return authorRepository.save(author);
+    }
+
+    // The @GetMapping annotation is used to map a GET request to a method.
+    @GetMapping
+    public List<Author> getAllAuthors() {
+        // The authorRepository.findAll() method is used to retrieve all Author objects from the database.
+        return authorRepository.findAll();
+    }
+
+    // The @GetMapping annotation is used to map a GET request to a method.
+    // The @PathVariable annotation is used to bind a path variable to a method parameter.
+    @GetMapping("/{id}")
+    public Author getAuthorById(@PathVariable Long id) {
+        // The authorRepository.findById() method is used to retrieve an Author object from the database by its ID.
+        // The .orElseThrow() method is used to throw a ResourceNotFoundException if the Author object is not found.
+        return authorRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Author not found with id :" + id));
+    }
+
+    // The @PutMapping annotation is used to map a PUT request to a method.
+    // The @PathVariable annotation is used to bind a path variable to a method parameter.
+    // The @RequestBody annotation is used to bind the request body to a method parameter.
+    @PutMapping("/{id}")
+    public Author updateAuthor(@PathVariable Long id, @RequestBody Author author) {
+        // The authorRepository.findById() method is used to retrieve an Author object from the database by its ID.
+        // The .orElseThrow() method is used to throw a ResourceNotFoundException if the Author object is not found.
+        Author existingAuthor = authorRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Author not found with id :" + id));
+        // The existingAuthor object is updated with the values from the author object.
+        existingAuthor.setName(author.getName());
+        existingAuthor.setDescription(author.getDescription());
+        // The authorRepository.save() method is used to update the Author object in the database.
+        return authorRepository.save(existingAuthor);
+    }
+
+    // The @DeleteMapping annotation is used to map a DELETE request to a method.
+    // The @PathVariable annotation is used to bind a path variable to a method parameter.
+    @DeleteMapping("/{id}")
+    public void deleteAuthor(@PathVariable Long id) {
+        // The authorRepository.deleteById() method is used to delete an Author object from the database by its ID.
+        authorRepository.deleteById(id);
+    }
+}
+```
+
+This code defines a REST controller for managing authors. The `@RestController` annotation is used to mark the class as a REST controller. The `@Autowired` annotation is used to inject an instance of the AuthorRepository interface into the `authorRepository` field.
+
+The class contains five methods:
+
+- The `createAuthor()` method is used to create a new author. It maps a POST request to the `/authors` endpoint. The method takes an Author object as a request body and uses the `authorRepository.save()` method to save it to the database. The method returns the saved Author object.
+- The `getAllAuthors()` method is used to retrieve all authors. It maps a GET request to the `/authors` endpoint. The method uses the `authorRepository.findAll()` method to retrieve all Author objects from the database. The method returns a list of Author objects.
+- The `getAuthorById()` method is used to retrieve an author by its ID. It maps a GET request to the `/authors/{id}` endpoint. The method takes a path variable named `id` and uses the `authorRepository.findById()` method to retrieve the Author object from the database. If the Author object is not found, the method throws a ResourceNotFoundException. The method returns the retrieved Author object.
+- The `updateAuthor()` method is used to update an author. It maps a PUT request to the `/authors/{id}` endpoint. The method takes a path variable named `id` and an Author object as a request body. The method uses the `authorRepository.findById()` method to retrieve the Author object from the database. If the Author object is not found, the method throws a ResourceNotFoundException. The method updates the existing Author object with the values from the request body and uses the `authorRepository.save()` method to update it in the database. The method returns the updated Author object.
+- The `deleteAuthor()` method is used to delete an author. It maps a DELETE request to the `/authors/{id}` endpoint. The method takes a path variable named `id`. The method uses the `authorRepository.deleteById()` method to delete the Author object from the database.
