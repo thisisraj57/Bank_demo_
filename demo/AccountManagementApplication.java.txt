@@ -1,0 +1,34 @@
+**Class:** `AccountManagementApplication`
+
+**Description:** This is the main application class that bootstraps the Spring Boot application. It is annotated with `@SpringBootApplication`, which combines several annotations such as `@Configuration`, `@EnableAutoConfiguration`, and `@ComponentScan`.
+
+**Method:** `public static void main(String[] args)`
+
+**Description:** This is the entry point of the Spring Boot application. It is responsible for starting the application context and initializing the Spring application.
+
+**@SpringBootApplication Annotation:**
+
+The `@SpringBootApplication` annotation is used to indicate that this class is the main application class of a Spring Boot application. It triggers auto-configuration and component scanning, and it is equivalent to using the following annotations together:
+
+```java
+@Configuration
+@EnableAutoConfiguration
+@ComponentScan
+```
+
+**How to use:**
+
+To use this class, you can simply run the `main` method, which will start the Spring Boot application and load the application context.
+
+**Example:**
+
+```java
+public class DemoApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(DemoApplication.class, args);
+    }
+}
+```
+
+When you run this code, it will start a Spring Boot application and automatically configure various components based on the classpath and application properties. You can then use Spring's annotations and features to develop your application.
