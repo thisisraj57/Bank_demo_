@@ -1,13 +1,9 @@
 public class Account {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String name;
-    private String email;
-    private String phoneNumber;
-    private String status; // approved, rejected, pending, etc.
-
-    // Standard getters and setters
+  @Id
+  @GeneratedValue
+  private Long id;
+  private String accountNumber;
+  private String customerName;
+  private String accountType;
+  // ... Other attributes and methods
 }
