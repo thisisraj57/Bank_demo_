@@ -1,0 +1,72 @@
+```java
+// The @RestController annotation is used to mark a class as a REST controller.
+// The @Autowired annotation is used to inject a dependency into a bean.
+@RestController
+@RequestMapping("/books")
+public class BookController {
+
+    // The @Autowired annotation is used to inject an instance of the BookRepository interface into the bookRepository field.
+    @Autowired
+    private BookRepository bookRepository;
+
+    // The @PostMapping annotation is used to map a POST request to a method.
+    // The @RequestBody annotation is used to bind the request body to a method parameter.
+    @PostMapping
+    public Book createBook(@RequestBody Book book) {
+        // The bookRepository.save() method is used to save the Book object to the database.
+        return bookRepository.save(book);
+    }
+
+    // The @GetMapping annotation is used to map a GET request to a method.
+    @GetMapping
+    public List<Book> getAllBooks() {
+        // The bookRepository.findAll() method is used to retrieve all Book objects from the database.
+        return bookRepository.findAll();
+    }
+
+    // The @GetMapping annotation is used to map a GET request to a method.
+    // The @PathVariable annotation is used to bind a path variable to a method parameter.
+    @GetMapping("/{id}")
+    public Book getBookById(@PathVariable Long id) {
+        // The bookRepository.findById() method is used to retrieve a Book object from the database by its ID.
+        // The .orElseThrow() method is used to throw a ResourceNotFoundException if the Book object is not found.
+        return bookRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Book not found with id :" + id));
+    }
+
+    // The @PutMapping annotation is used to map a PUT request to a method.
+    // The @PathVariable annotation is used to bind a path variable to a method parameter.
+    // The @RequestBody annotation is used to bind the request body to a method parameter.
+    @PutMapping("/{id}")
+    public Book updateBook(@PathVariable Long id, @RequestBody Book book) {
+        // The bookRepository.findById() method is used to retrieve a Book object from the database by its ID.
+        // The .orElseThrow() method is used to throw a ResourceNotFoundException if the Book object is not found.
+        Book existingBook = bookRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Book not found with id :" + id));
+        // The existingBook object is updated with the values from the book object.
+        existingBook.setTitle(book.getTitle());
+        existingBook.setAuthor(book.getAuthor());
+        existingBook.setCategory(book.getCategory());
+        existingBook.setIsbn(book.getIsbn());
+        existingBook.setQuantity(book.getQuantity());
+        // The bookRepository.save() method is used to update the Book object in the database.
+        return bookRepository.save(existingBook);
+    }
+
+    // The @DeleteMapping annotation is used to map a DELETE request to a method.
+    // The @PathVariable annotation is used to bind a path variable to a method parameter.
+    @DeleteMapping("/{id}")
+    public void deleteBook(@PathVariable Long id) {
+        // The bookRepository.deleteById() method is used to delete a Book object from the database by its ID.
+        bookRepository.deleteById(id);
+    }
+}
+```
+
+This code defines a REST controller for managing books. The `@RestController` annotation is used to mark the class as a REST controller. The `@Autowired` annotation is used to inject an instance of the BookRepository interface into the `bookRepository` field.
+
+The class contains five methods:
+
+- The `createBook()` method is used to create a new book. It maps a POST request to the `/books` endpoint. The method takes a Book object as a request body and uses the `bookRepository.save()` method to save it to the database. The method returns the saved Book object.
+- The `getAllBooks()` method is used to retrieve all books. It maps a GET request to the `/books` endpoint. The method uses the `bookRepository.findAll()` method to retrieve all Book objects from the database. The method returns a list of Book objects.
+- The `getBookById()` method is used to retrieve a book by its ID. It maps a GET request to the `/books/{id}` endpoint. The method takes a path variable named `id` and uses the `bookRepository.findById()` method to retrieve the Book object from the database. If the Book object is not found, the method throws a ResourceNotFoundException. The method returns the retrieved Book object.
+- The `updateBook()` method is used to update a book. It maps a PUT request to the `/books/{id}` endpoint. The method takes a path variable named `id` and a Book object as a request body. The method uses the `bookRepository.findById()` method to retrieve the Book object from the database. If the Book object is not found, the method throws a ResourceNotFoundException. The method updates the existing Book object with the values from the request body and uses the `bookRepository.save()` method to update it in the database. The method returns the updated Book object.
+- The `deleteBook()` method is used to delete a book. It maps a DELETE request to the `/books/{id}` endpoint. The method takes a path variable named `id`. The method uses the `bookRepository.deleteById()` method to delete the Book object from the database.
