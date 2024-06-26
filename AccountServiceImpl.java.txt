@@ -1,0 +1,40 @@
+**Documentation for AccountServiceImpl class:**
+
+**Class:** AccountServiceImpl
+
+**Description:**
+Implementation of the AccountService interface. It interacts with the database using the AccountRepository to perform CRUD operations on accounts.
+
+**Methods:**
+
+- **createAccount:** Creates a new account and saves it to the database.
+- **getAccount:** Retrieves an account by its ID from the database.
+- **updateAccount:** Updates an existing account in the database.
+- **deleteAccount:** Deletes an account from the database.
+
+**Example Usage:**
+
+```java
+// Create a new account
+Account account = new Account();
+account.setName("John Doe");
+account.setEmail("johndoe@example.com");
+account.setPhoneNumber("123-456-7890");
+accountService.createAccount(account);
+
+// Retrieve an account by its ID
+Account retrievedAccount = accountService.getAccount(1L);
+
+// Update an existing account
+retrievedAccount.setName("Jane Doe");
+accountService.updateAccount(retrievedAccount);
+
+// Delete an account
+accountService.deleteAccount(1L);
+```
+
+**Additional Notes:**
+
+- The `@Autowired` annotation is used for dependency injection of the AccountRepository.
+- The `@Override` annotation indicates that the methods are overriding the ones defined in the AccountService interface.
+- The `orElseThrow` method is used to handle the case when an account with the given ID is not found in the database. It throws a `ResourceNotFoundException` with a custom error message.
