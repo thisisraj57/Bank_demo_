@@ -4,3 +4,4 @@ public class AccountManagementApplication {
         SpringApplication.run(AccountManagementApplication.class, args);
     }
 }
+
