@@ -1,0 +1,31 @@
+```java
+// The @Entity annotation is used to mark a class as a JPA entity.
+@Entity
+public class Review {
+
+    // The @Id annotation is used to mark a field as the primary key of the entity.
+    // The @GeneratedValue annotation is used to specify the strategy for generating the primary key.
+    // The GenerationType.IDENTITY strategy generates the primary key automatically.
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    // The @Column annotation is used to map a field to a column in the database.
+    private String reviewText;
+    private int rating;
+    private Long bookId;
+}
+```
+
+This code defines a JPA entity class for a review. The @Entity annotation is used to mark the class as a JPA entity. The @Id annotation is used to mark the `id` field as the primary key of the entity. The @GeneratedValue annotation is used to specify the strategy for generating the primary key. The GenerationType.IDENTITY strategy generates the primary key automatically.
+
+The other fields (`reviewText`, `rating`, and `bookId`) are mapped to columns in the database using the @Column annotation.
+
+Here is a breakdown of the code:
+
+- The `@Entity` annotation is used to mark the `Review` class as a JPA entity.
+- The `@Id` annotation is used to mark the `id` field as the primary key of the entity.
+- The `@GeneratedValue(strategy = GenerationType.IDENTITY)` annotation is used to specify that the `id` field will be generated automatically by the database.
+- The `private String reviewText;` field represents the review text.
+- The `private int rating;` field represents the rating of the review.
+- The `private Long bookId;` field represents the ID of the book that the review is for.
