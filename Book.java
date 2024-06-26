@@ -1,11 +1,30 @@
-public class Book {
+public class BookController {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String title;
-    private String author;
-    private String category;
-    private String isbn;
-    private int quantity;
+    @Autowired
+    private BookService bookService;
+
+    @GetMapping
+    public List<Book> getAllBooks() {
+        return bookService.getAllBooks();
+    }
+
+    @GetMapping("/{id}")
+    public Book getBookById(@PathVariable Integer id) {
+        return bookService.getBookById(id);
+    }
+
+    @PostMapping
+    public Book createBook(@RequestBody Book book) {
+        return bookService.createBook(book);
+    }
+
+    @PutMapping("/{id}")
+    public Book updateBook(@PathVariable Integer id, @RequestBody Book book) {
+        return bookService.updateBook(id, book);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteBook(@PathVariable Integer id) {
+        bookService.deleteBook(id);
+    }
 }
