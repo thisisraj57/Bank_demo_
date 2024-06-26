@@ -1,0 +1,40 @@
+**Java Spring Boot Application for Account Management**
+
+**Description:**
+This Java Spring Boot application provides an automated system for account management, including account opening and onboarding.
+
+**Class Diagram:**
+
+```
++-----------------------------+
+| AccountManagementApplication |
++-----------------------------+
+| + main(String[]) : void    |
++-----------------------------+
+```
+
+**Main Class:**
+
+**AccountManagementApplication**
+- This is the main application class.
+- The `main` method is the entry point of the application. It bootstraps the Spring application context and starts the application.
+
+**How to Use:**
+
+1. Create a new Spring Boot project.
+2. Add the necessary dependencies to your `pom.xml` file.
+3. Create the necessary classes and interfaces.
+4. Run the application using the `mvn spring-boot:run` command.
+
+**Dependencies:**
+
+The following dependencies are required for this application:
+
+- Spring Boot
+- Spring Data JPA
+- Lombok
+
+**Additional Notes:**
+
+- This application can be easily customized to meet your specific requirements.
+- You can add additional features, such as authentication and authorization, to enhance the security of your application.
