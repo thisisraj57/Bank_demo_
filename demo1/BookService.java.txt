@@ -1,0 +1,66 @@
+**Class:** BookService
+
+**Purpose:** A service class for managing books in a library management system.
+
+**Annotations:**
+
+* **@Service:** Indicates that this class is a service class.
+* **@Autowired:** Indicates that the bookRepository field should be automatically wired by Spring.
+
+**Autowired Fields:**
+
+* **bookRepository:** The BookRepository instance used to perform CRUD operations on books.
+
+**Methods:**
+
+* **getAllBooks:** Retrieves a list of all books.
+* **getBookById:** Retrieves a book by its ID.
+* **createBook:** Creates a new book.
+* **updateBook:** Updates an existing book.
+* **deleteBook:** Deletes a book by its ID.
+
+**Example:**
+
+```java
+public class BookService {
+
+    @Autowired
+    private BookRepository bookRepository;
+
+    public List<Book> getAllBooks() {
+        return bookRepository.findAll();
+    }
+
+    public Book getBookById(Long id) {
+        return bookRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Book not found with id :" + id));
+    }
+
+    public Book createBook(Book book) {
+        return bookRepository.save(book);
+    }
+
+    public Book updateBook(Long id, Book book) {
+        Book existingBook = bookRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Book not found with id :" + id));
+        existingBook.setTitle(book.getTitle());
+        existingBook.setAuthor(book.getAuthor());
+        existingBook.setCategory(book.getCategory());
+        return bookRepository.save(existingBook);
+    }
+
+    public void deleteBook(Long id) {
+        bookRepository.deleteById(id);
+    }
+}
+```
+
+This code defines a service class for managing books. The service class uses the BookRepository to perform CRUD operations on books. The service class is annotated with @Service, which indicates that it is a service class.
+
+The service class has five methods:
+
+* **getAllBooks:** Retrieves a list of all books.
+* **getBookById:** Retrieves a book by its ID.
+* **createBook:** Creates a new book.
+* **updateBook:** Updates an existing book.
+* **deleteBook:** Deletes a book by its ID.
+
+Each method uses the BookRepository to perform the corresponding operation on books. The methods also handle exceptions and return appropriate error messages if a book is not found.
