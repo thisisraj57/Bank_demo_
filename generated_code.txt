@@ -1,9 +1,10 @@
-def is_prime(number):
-    if number <= 1:
-        return False
 
-    for i in range(2, int(number ** 0.5) + 1):
-        if number % i == 0:
-            return False
+def is_palindrome(string):
+    # Convert the string to lowercase and remove all spaces
+    string = string.lower().replace(" ", "")
+    # Check if the string is the same forwards and backwards
+    return string == string[::-1]
 
-    return True
+# Example
+string = "racecar"
+print(is_palindrome(string))  # True
