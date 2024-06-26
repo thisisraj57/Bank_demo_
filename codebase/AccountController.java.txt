@@ -1,0 +1,44 @@
+**Java Spring Boot REST Controller for Account Management**
+
+**Description:**
+This Java Spring Boot REST controller provides a set of endpoints for managing accounts, including account creation and status retrieval.
+
+**Class Diagram:**
+
+```
++-------------------------+
+| AccountController       |
++-------------------------+
+| - accountService : AccountService |
+| + createAccount(Account) : Account |
+| + getAccountStatus(Long) : AccountStatus |
++-------------------------+
+```
+
+**Controller Class:**
+
+**AccountController**
+- This is a Spring Boot REST controller.
+- It handles HTTP requests for account management.
+- It uses the `@Autowired` annotation to inject an instance of the `AccountService` interface.
+- The `createAccount` method is used to create a new account. It takes an `Account` object as input and returns the created account.
+- The `getAccountStatus` method is used to retrieve the status of a specific account. It takes the account's ID as input and returns the account's status.
+
+**How to Use:**
+
+1. Create a new Spring Boot project.
+2. Add the necessary dependencies to your `pom.xml` file.
+3. Create the necessary classes and interfaces.
+4. Run the application using the `mvn spring-boot:run` command.
+
+**Dependencies:**
+
+The following dependencies are required for this controller:
+
+- Spring Boot
+- Spring MVC
+
+**Additional Notes:**
+
+- This controller can be easily customized to meet your specific requirements.
+- You can add additional endpoints to perform other account management operations.
