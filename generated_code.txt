@@ -1,23 +1,17 @@
-```python
-def is_prime(number):
-  """
-  Returns True if the given number is prime.
-
-  Args:
-    number: The number to check.
-
-  Returns:
-    True if the number is prime, False otherwise.
-  """
-
-  if number == 2:
-    return True
-  elif number <= 1 or number % 2 == 0:
-    return False
-
-  for i in range(3, int(number ** 0.5) + 1, 2):
-    if number % i == 0:
-      return False
-
-  return True
+Here is the Mermaid sequence diagram syntax:
+```mermaid
+sequenceDiagram
+participant SpringBoot2JPAWithSpringDataRestApplication
+participant StudentDataRestRepository
+SpringBoot2JPAWithSpringDataRestApplication->StudentDataRestRepository: autowired
+SpringBoot2JPAWithSpringDataRestApplication->SpringBoot2JPAWithSpringDataRestApplication: main method begins
+SpringBoot2JPAWithSpringDataRestApplication->SpringApplication: run method called
+SpringApplication->SpringBoot2JPAWithSpringDataRestApplication: SpringBoot2JPAWithSpringDataRestApplication starts
 ```
+
+Explanation:
+The Mermaid sequence diagram syntax defines a sequence diagram with two participants: SpringBoot2JPAWithSpringDataRestApplication and StudentDataRestRepository. The diagram shows the following interactions:
+- SpringBoot2JPAWithSpringDataRestApplication autowires StudentDataRestRepository.
+- SpringBoot2JPAWithSpringDataRestApplication's main method begins.
+- SpringBoot2JPAWithSpringDataRestApplication calls SpringApplication's run method.
+- SpringApplication calls SpringBoot2JPAWithSpringDataRestApplication's main method, starting the SpringBoot2JPAWithSpringDataRestApplication.
