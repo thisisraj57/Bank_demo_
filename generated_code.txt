@@ -1,10 +1,36 @@
+Here is the Python code:
 
+```python
 def is_palindrome(string):
-    # Convert the string to lowercase and remove all spaces
-    string = string.lower().replace(" ", "")
-    # Check if the string is the same forwards and backwards
-    return string == string[::-1]
+    """
+    Checks if a string is a palindrome.
 
-# Example
-string = "racecar"
-print(is_palindrome(string))  # True
+    Args:
+    string: The string to check.
+
+    Returns:
+    True if the string is a palindrome, False otherwise.
+    """
+    # Remove non-alphanumeric characters from the string
+    string = ''.join(filter(str.isalnum, string)).lower()
+    # Check if the string is empty or has only one character
+    if len(string) <= 1:
+        return True
+    # Check if the first and last characters of the string are the same
+    if string[0] != string[-1]:
+        return False
+    # Recursively check the remaining characters of the string
+    return is_palindrome(string[1:-1])
+```
+Explanation:
+The code defines a function called 'is_palindrome' that takes a string as input and returns True if the string is a palindrome, or False otherwise. A palindrome is a string that reads the same backward as forward. Here's how the code works:
+
+1. The function first removes all non-alphanumeric characters from the input string using the filter() function. This ensures that the function is case-insensitive and ignores spaces and punctuation.
+
+2. Next, the function checks if the length of the cleaned string is less than or equal to 1. If it is, the string is considered a palindrome because it either has no characters or only one character.
+
+3. The function also checks if the first and last characters of the cleaned string are different. If they are different, the string is not a palindrome, and the function returns False.
+
+4. If the first and last characters are the same, the function recursively calls itself with the remaining characters of the string (string[1:-1]). This process continues until the function reaches the base case where the string has no more characters or only one character left.
+
+5. If the function successfully reaches the base case without finding any mismatched characters, it returns True, indicating that the original string is a palindrome.
