@@ -1,17 +1,14 @@
-Here is the Mermaid sequence diagram syntax:
+Here is the Mermaid syntax for the sequence diagram:
 ```mermaid
 sequenceDiagram
-participant SpringBoot2JPAWithSpringDataRestApplication
+participant Main
 participant StudentDataRestRepository
-SpringBoot2JPAWithSpringDataRestApplication->StudentDataRestRepository: autowired
-SpringBoot2JPAWithSpringDataRestApplication->SpringBoot2JPAWithSpringDataRestApplication: main method begins
-SpringBoot2JPAWithSpringDataRestApplication->SpringApplication: run method called
-SpringApplication->SpringBoot2JPAWithSpringDataRestApplication: SpringBoot2JPAWithSpringDataRestApplication starts
+participant SpringApplication
+Main->SpringApplication: SpringApplication.run(SpringBoot2JPAWithSpringDataRestApplication.class, args)
+SpringApplication->StudentDataRestRepository: @AutowiredRepository
+activate StudentDataRestRepository
+StudentDataRestRepository->Main: Repository
+deactivate StudentDataRestRepository
 ```
 
-Explanation:
-The Mermaid sequence diagram syntax defines a sequence diagram with two participants: SpringBoot2JPAWithSpringDataRestApplication and StudentDataRestRepository. The diagram shows the following interactions:
-- SpringBoot2JPAWithSpringDataRestApplication autowires StudentDataRestRepository.
-- SpringBoot2JPAWithSpringDataRestApplication's main method begins.
-- SpringBoot2JPAWithSpringDataRestApplication calls SpringApplication's run method.
-- SpringApplication calls SpringBoot2JPAWithSpringDataRestApplication's main method, starting the SpringBoot2JPAWithSpringDataRestApplication.
+Explanation: The Mermaid sequence diagram represents the interactions between the 'Main' class, 'StudentDataRestRepository' class, and 'SpringApplication' class. The diagram starts with the 'Main' class calling the static 'run' method of the 'SpringApplication' class. Then, SpringApplication initializes an instance of the 'StudentDataRestRepository' class and injects it into the 'Main' class. The 'Main' class then uses the injected repository instance to perform operations related to student data. The sequence diagram provides a visual representation of the interactions between these classes and helps understand the flow of the program.
