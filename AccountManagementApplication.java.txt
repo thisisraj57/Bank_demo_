@@ -1,0 +1,39 @@
+**Documentation for AccountManagementApplication class:**
+
+**Class:** AccountManagementApplication
+
+**Description:**
+Spring Boot application for managing accounts in iPYMT. It defines endpoints for creating, retrieving, updating, and deleting accounts.
+
+**Methods:**
+
+- **main:** Main method to boot the application.
+- **createAccount:** Creates a new account and returns the created account.
+- **getAccount:** Retrieves an account by its ID and returns the account.
+- **updateAccount:** Updates an existing account by its ID and returns the updated account.
+- **deleteAccount:** Deletes an account by its ID.
+
+**Example Usage:**
+
+```java
+// Create a new account
+Account account = new Account();
+account.setName("John Doe");
+account.setEmail("johndoe@example.com");
+account.setPhoneNumber("123-456-7890");
+Account createdAccount = accountService.createAccount(account);
+
+// Retrieve an account by its ID
+Account retrievedAccount = accountService.getAccount(createdAccount.getId());
+
+// Update an existing account
+retrievedAccount.setName("Jane Doe");
+Account updatedAccount = accountService.updateAccount(retrievedAccount.getId(), retrievedAccount);
+
+// Delete an account
+accountService.deleteAccount(updatedAccount.getId());
+```
+
+**Additional Notes:**
+
+This class assumes that the necessary autowiring and configuration for Spring Data JPA or other data access technologies have been done, and that an implementation of the AccountService interface is available.
