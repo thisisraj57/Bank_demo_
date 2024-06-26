@@ -1,0 +1,187 @@
+# Import the necessary modules
+from flask import Flask, render_template, request, redirect, url_for
+from flask_sqlalchemy import SQLAlchemy
+
+# Create a Flask app
+app = Flask(__name__)
+
+# Configure the database
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///library.db'
+db = SQLAlchemy(app)
+
+# Define the Book model
+class Book(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(255), nullable=False)
+    author = db.Column(db.String(255), nullable=False)
+    category = db.Column(db.String(255), nullable=False)
+
+# Define the Author model
+class Author(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), nullable=False)
+
+# Define the Category model
+class Category(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), nullable=False)
+
+# Define the Review model
+class Review(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    book_id = db.Column(db.Integer, db.ForeignKey('book.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    review = db.Column(db.String(255), nullable=False)
+
+# Define the User model
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(255), nullable=False)
+    password = db.Column(db.String(255), nullable=False)
+
+# Create the database tables
+db.create_all()
+
+# Define the home page route
+@app.route('/')
+def home():
+    # Query the database for all books
+    books = Book.query.all()
+    # Render the home page template with the list of books
+    return render_template('home.html', books=books)
+
+# Define the add book route
+@app.route('/add_book', methods=['GET', 'POST'])
+def add_book():
+    # If the request method is POST, add the book to the database
+    if request.method == 'POST':
+        # Get the form data
+        title = request.form['title']
+        author = request.form['author']
+        category = request.form['category']
+        # Create a new book object
+        book = Book(title=title, author=author, category=category)
+        # Add the book to the database
+        db.session.add(book)
+        # Commit the changes to the database
+        db.session.commit()
+        # Redirect to the home page
+        return redirect(url_for('home'))
+    # If the request method is GET, render the add book template
+    else:
+        # Query the database for all authors and categories
+        authors = Author.query.all()
+        categories = Category.query.all()
+        # Render the add book template with the list of authors and categories
+        return render_template('add_book.html', authors=authors, categories=categories)
+
+# Define the edit book route
+@app.route('/edit_book/<int:book_id>', methods=['GET', 'POST'])
+def edit_book(book_id):
+    # Query the database for the book with the given ID
+    book = Book.query.get(book_id)
+    # If the request method is POST, update the book in the database
+    if request.method == 'POST':
+        # Get the form data
+        title = request.form['title']
+        author = request.form['author']
+        category = request.form['category']
+        # Update the book's attributes
+        book.title = title
+        book.author = author
+        book.category = category
+        # Commit the changes to the database
+        db.session.commit()
+        # Redirect to the home page
+        return redirect(url_for('home'))
+    # If the request method is GET, render the edit book template
+    else:
+        # Query the database for all authors and categories
+        authors = Author.query.all()
+        categories = Category.query.all()
+        # Render the edit book template with the book, authors, and categories
+        return render_template('edit_book.html', book=book, authors=authors, categories=categories)
+
+# Define the delete book route
+@app.route('/delete_book/<int:book_id>')
+def delete_book(book_id):
+    # Query the database for the book with the given ID
+    book = Book.query.get(book_id)
+    # Delete the book from the database
+    db.session.delete(book)
+    # Commit the changes to the database
+    db.session.commit()
+    # Redirect to the home page
+    return redirect(url_for('home'))
+
+# Define the add author route
+@app.route('/add_author', methods=['GET', 'POST'])
+def add_author():
+    # If the request method is POST, add the author to the database
+    if request.method == 'POST':
+        # Get the form data
+        name = request.form['name']
+        # Create a new author object
+        author = Author(name=name)
+        # Add the author to the database
+        db.session.add(author)
+        # Commit the changes to the database
+        db.session.commit()
+        # Redirect to the home page
+        return redirect(url_for('home'))
+    # If the request method is GET, render the add author template
+    else:
+        # Render the add author template
+        return render_template('add_author.html')
+
+# Define the edit author route
+@app.route('/edit_author/<int:author_id>', methods=['GET', 'POST'])
+def edit_author(author_id):
+    # Query the database for the author with the given ID
+    author = Author.query.get(author_id)
+    # If the request method is POST, update the author in the database
+    if request.method == 'POST':
+        # Get the form data
+        name = request.form['name']
+        # Update the author's name
+        author.name = name
+        # Commit the changes to the database
+        db.session.commit()
+        # Redirect to the home page
+        return redirect(url_for('home'))
+    # If the request method is GET, render the edit author template
+    else:
+        # Render the edit author template
+        return render_template('edit_author.html', author=author)
+
+# Define the delete author route
+@app.route('/delete_author/<int:author_id>')
+def delete_author(author_id):
+    # Query the database for the author with the given ID
+    author = Author.query.get(author_id)
+    # Delete the author from the database
+    db.session.delete(author)
+    # Commit the changes to the database
+    db.session.commit()
+    # Redirect to the home page
+    return redirect(url_for('home'))
+
+# Define the add category route
+@app.route('/add_category', methods=['GET', 'POST'])
+def add_category():
+    # If the request method is POST, add the category to the database
+    if request.method == 'POST':
+        # Get the form data
+        name = request.form['name']
+        # Create a new category object
+        category = Category(name=name)
+        # Add the category to the database
+        db.session.add(category)
+        # Commit the changes to the database
+        db.session.commit()
+        # Redirect to the home page
+        return redirect(url_for('home'))
+    # If the request method is GET, render the add category template
+    else:
+        # Render the add category template
+        return render_template('add_category.html')
