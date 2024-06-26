@@ -1,0 +1,69 @@
+```java
+// The @RestController annotation is used to mark a class as a REST controller.
+// The @Autowired annotation is used to inject a dependency into a bean.
+@RestController
+@RequestMapping("/categories")
+public class CategoryController {
+
+    // The @Autowired annotation is used to inject an instance of the CategoryRepository interface into the categoryRepository field.
+    @Autowired
+    private CategoryRepository categoryRepository;
+
+    // The @PostMapping annotation is used to map a POST request to a method.
+    // The @RequestBody annotation is used to bind the request body to a method parameter.
+    @PostMapping
+    public Category createCategory(@RequestBody Category category) {
+        // The categoryRepository.save() method is used to save the Category object to the database.
+        return categoryRepository.save(category);
+    }
+
+    // The @GetMapping annotation is used to map a GET request to a method.
+    @GetMapping
+    public List<Category> getAllCategories() {
+        // The categoryRepository.findAll() method is used to retrieve all Category objects from the database.
+        return categoryRepository.findAll();
+    }
+
+    // The @GetMapping annotation is used to map a GET request to a method.
+    // The @PathVariable annotation is used to bind a path variable to a method parameter.
+    @GetMapping("/{id}")
+    public Category getCategoryById(@PathVariable Long id) {
+        // The categoryRepository.findById() method is used to retrieve a Category object from the database by its ID.
+        // The .orElseThrow() method is used to throw a ResourceNotFoundException if the Category object is not found.
+        return categoryRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Category not found with id :" + id));
+    }
+
+    // The @PutMapping annotation is used to map a PUT request to a method.
+    // The @PathVariable annotation is used to bind a path variable to a method parameter.
+    // The @RequestBody annotation is used to bind the request body to a method parameter.
+    @PutMapping("/{id}")
+    public Category updateCategory(@PathVariable Long id, @RequestBody Category category) {
+        // The categoryRepository.findById() method is used to retrieve a Category object from the database by its ID.
+        // The .orElseThrow() method is used to throw a ResourceNotFoundException if the Category object is not found.
+        Category existingCategory = categoryRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Category not found with id :" + id));
+        // The existingCategory object is updated with the values from the category object.
+        existingCategory.setName(category.getName());
+        existingCategory.setDescription(category.getDescription());
+        // The categoryRepository.save() method is used to update the Category object in the database.
+        return categoryRepository.save(existingCategory);
+    }
+
+    // The @DeleteMapping annotation is used to map a DELETE request to a method.
+    // The @PathVariable annotation is used to bind a path variable to a method parameter.
+    @DeleteMapping("/{id}")
+    public void deleteCategory(@PathVariable Long id) {
+        // The categoryRepository.deleteById() method is used to delete a Category object from the database by its ID.
+        categoryRepository.deleteById(id);
+    }
+}
+```
+
+This code defines a REST controller for managing categories. The `@RestController` annotation is used to mark the class as a REST controller. The `@Autowired` annotation is used to inject an instance of the CategoryRepository interface into the `categoryRepository` field.
+
+The class contains five methods:
+
+- The `createCategory()` method is used to create a new category. It maps a POST request to the `/categories` endpoint. The method takes a Category object as a request body and uses the `categoryRepository.save()` method to save it to the database. The method returns the saved Category object.
+- The `getAllCategories()` method is used to retrieve all categories. It maps a GET request to the `/categories` endpoint. The method uses the `categoryRepository.findAll()` method to retrieve all Category objects from the database. The method returns a list of Category objects.
+- The `getCategoryById()` method is used to retrieve a category by its ID. It maps a GET request to the `/categories/{id}` endpoint. The method takes a path variable named `id` and uses the `categoryRepository.findById()` method to retrieve the Category object from the database. If the Category object is not found, the method throws a ResourceNotFoundException. The method returns the retrieved Category object.
+- The `updateCategory()` method is used to update a category. It maps a PUT request to the `/categories/{id}` endpoint. The method takes a path variable named `id` and a Category object as a request body. The method uses the `categoryRepository.findById()` method to retrieve the Category object from the database. If the Category object is not found, the method throws a ResourceNotFoundException. The method updates the existing Category object with the values from the request body and uses the `categoryRepository.save()` method to update it in the database. The method returns the updated Category object.
+- The `deleteCategory()` method is used to delete a category. It maps a DELETE request to the `/categories/{id}` endpoint. The method takes a path variable named `id`. The method uses the `categoryRepository.deleteById()` method to delete the Category object from the database.
