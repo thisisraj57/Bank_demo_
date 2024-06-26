@@ -1,0 +1,52 @@
+**Class:** `AccountController`
+
+**Description:** This class is a REST controller that handles HTTP requests and responses for managing account entities. It is annotated with `@RestController`, which indicates that this class is a controller for web requests.
+
+**Autowired Field:**
+
+* **accountService:** An instance of the `AccountService` class that provides business logic for managing accounts. This field is annotated with `@Autowired`, which means that Spring will automatically wire an instance of the `AccountService` class into this field.
+
+**HTTP Request Mappings:**
+
+Each method in this class is annotated with a specific HTTP request mapping, which determines the HTTP method (such as GET, POST, PUT, or DELETE) and the URI pattern that the method handles.
+
+* **@PostMapping**: Handles HTTP POST requests to the "/api/accounts" URI.
+* **@GetMapping**: Handles HTTP GET requests to the "/api/accounts" URI.
+* **@GetMapping("/{id}"): Handles HTTP GET requests to the "/api/accounts/{id}" URI, where {id} is a path variable.
+* **@PutMapping("/{id}"): Handles HTTP PUT requests to the "/api/accounts/{id}" URI.
+* **@DeleteMapping("/{id}"): Handles HTTP DELETE requests to the "/api/accounts/{id}" URI.
+
+**Methods:**
+
+Each method in this class corresponds to a specific HTTP request mapping and performs the appropriate action:
+
+* **createAccount**: Creates a new account entity and saves it to the database. It takes an `Account` object as a request body.
+* **getAllAccounts**: Retrieves all account entities from the database and returns them as a list.
+* **getAccountById**: Retrieves an account entity from the database by its ID.
+* **updateAccount**: Updates an existing account entity in the database. It takes an `Account` object as a request body.
+* **deleteAccount**: Deletes an account entity from the database by its ID.
+
+**How to use:**
+
+You can use this controller to handle HTTP requests and responses for managing account entities in your application. You can create new accounts, retrieve existing accounts, update account information, and delete accounts.
+
+**Example:**
+
+```java
+@RestController
+@RequestMapping("/api/accounts")
+public class AccountController {
+
+    @Autowired
+    private AccountService accountService;
+
+    @PostMapping
+    public Account createAccount(@RequestBody Account account) {
+        return accountService.createAccount(account);
+    }
+
+    // Other methods...
+}
+```
+
+This code creates a REST controller that handles HTTP requests and responses for managing account entities. It is mapped to the "/api/accounts" URI, and it provides methods for creating, retrieving, updating, and deleting accounts.
