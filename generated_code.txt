@@ -1,24 +1,23 @@
 ```python
-def is_palindrome(string: str) -> bool:
-    """
-    Checks if a given string is a palindrome.
+def is_prime(number):
+  """
+  Returns True if the given number is prime.
 
-    Args:
-    string: The string to check.
+  Args:
+    number: The number to check.
 
-    Returns:
-    True if the string is a palindrome, False otherwise.
-    """
+  Returns:
+    True if the number is prime, False otherwise.
+  """
 
-    # Convert the string to lowercase and remove all spaces.
-    string = string.lower().replace(" ", "")
+  if number == 2:
+    return True
+  elif number <= 1 or number % 2 == 0:
+    return False
 
-    # Check if the string is the same forwards and backwards.
-    return string == string[::-1]
+  for i in range(3, int(number ** 0.5) + 1, 2):
+    if number % i == 0:
+      return False
 
-
-# Example usage:
-print(is_palindrome("racecar"))  # True
-print(is_palindrome("kayak"))  # True
-print(is_palindrome("stressed"))  # False
+  return True
 ```
