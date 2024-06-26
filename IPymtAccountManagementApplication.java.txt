@@ -1,0 +1,23 @@
+**IPymtAccountManagementApplication.java**
+
+**Description**: This is the main Spring Boot application class that serves as the entry point to the application.
+
+**Purpose**:
+- Initializes and bootstraps the Spring application context.
+- Scans the classpath for annotated components (@Component, @Service, @Repository, etc.) and creates instances of those components.
+- Configures the application based on the properties defined in the "application.properties" file.
+- Starts the embedded web server and listens for incoming HTTP requests.
+- Handles the application lifecycle events (e.g., starting, stopping, failure).
+
+**Method**:
+- `public static void main(String[] args)`: The entry point to the application. It initializes and runs the Spring application based on the command-line arguments provided.
+
+**Example Usage**:
+```java
+public class IPymtAccountManagementApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(IPymtAccountManagementApplication.class, args);
+    }
+}
+```
