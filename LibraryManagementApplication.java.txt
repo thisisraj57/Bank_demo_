@@ -1,0 +1,25 @@
+```java
+// The @SpringBootApplication annotation is used to mark a class as the main application class.
+@SpringBootApplication
+public class LibraryManagementApplication {
+
+    // This is the main method of the Spring Boot application.
+    public static void main(String[] args) {
+        // The SpringApplication.run() method is used to launch the Spring Boot application.
+        SpringApplication.run(LibraryManagementApplication.class, args);
+    }
+}
+```
+
+This code is the main application class of a Spring Boot application. The @SpringBootApplication annotation is used to mark a class as the main application class. The SpringApplication.run() method is used to launch the Spring Boot application. When the SpringApplication.run() method is called, it will automatically scan the package where the main application class is located and its subpackages for annotated classes, such as @RestController, @Service, and @Repository. These annotated classes will be automatically registered with the Spring IoC container.
+
+Here is a breakdown of the code:
+
+- The `@SpringBootApplication` annotation is a convenience annotation that adds the following annotations to the class:
+  - `@Configuration`: Indicates that the class is a configuration class.
+  - `@EnableAutoConfiguration`: Enables Spring Boot's auto-configuration feature, which automatically configures the Spring application based on the dependencies that are present on the classpath.
+  - `@ComponentScan`: Scans the package where the main application class is located and its subpackages for annotated classes, such as `@RestController`, `@Service`, and `@Repository`.
+
+- The `public static void main(String[] args)` method is the main method of the Spring Boot application.
+
+- The `SpringApplication.run(LibraryManagementApplication.class, args);` method is used to launch the Spring Boot application.
