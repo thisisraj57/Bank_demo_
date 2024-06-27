@@ -1,0 +1,26 @@
+**CSV File Format**
+
+The CSV file contains two columns:
+
+* **Name:** The name of the person.
+* **Age:** The age of the person.
+* **Company:** The company the person works for.
+
+**Example Data**
+
+The following is an example of the data in the CSV file:
+
+```
+raj,44,demo
+hemanth,56,abc
+```
+
+**Usage**
+
+The CSV file can be used to generate reports or to perform data analysis. For example, you could use the CSV file to generate a report of all employees over the age of 50.
+
+**Additional Notes**
+
+* The CSV file is comma-separated.
+* The CSV file does not have a header row.
+* The CSV file is UTF-8 encoded.
