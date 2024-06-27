@@ -1,0 +1,13 @@
+```mermaid
+sequenceDiagram
+participant User
+participant SpringBoot2JPAWithSpringDataRestApplication
+participant StudentDataRestRepository
+
+User->SpringBoot2JPAWithSpringDataRestApplication: calls main method
+SpringBoot2JPAWithSpringDataRestApplication->StudentDataRestRepository: calls constructor
+SpringBoot2JPAWithSpringDataRestApplication->StudentDataRestRepository: calls repository methods
+```
+
+Explanation:
+The Mermaid code defines a sequence diagram that shows the interactions between the User, SpringBoot2JPAWithSpringDataRestApplication, and StudentDataRestRepository classes. The diagram starts with the User calling the main method of the SpringBoot2JPAWithSpringDataRestApplication class. The SpringBoot2JPAWithSpringDataRestApplication class then calls the constructor of the StudentDataRestRepository class and interacts with its methods.
