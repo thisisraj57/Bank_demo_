@@ -1,15 +1,18 @@
 Here is the Python code:
 ```python
-# Function to check if a number is prime
-def is_prime(number):
-    # Iterate from 2 to the square root of the given number
-    for i in range(2, int(number**0.5) + 1):
-        # If the number is divisible by any number from 2 to its square root, it is not prime
-        if number % i == 0:
-            return False
-    # If the number is not divisible by any number from 2 to its square root, it is prime
-    return True
+# Python code to check if a string is palindrome or not
+def is_palindrome(string):
+    # Convert the string to lowercase for case insensitivity
+    lower_string = string.lower()
+    # Reverse the string
+    reversed_string = lower_string[::-1]
+    # Check if the reversed string is equal to the original string
+    return lower_string == reversed_string
 ```
 
-Explanation:
-The provided Python code defines a function named 'is_prime' that checks if a given number is prime. The function takes a single argument 'number' which represents the number to be checked. It iterates through all the numbers from 2 to the square root of the given number and checks if the number is divisible by any of these numbers. If the number is divisible by any number, the function returns False indicating that it is not a prime number. If the number is not divisible by any number from 2 to its square root, the function returns True indicating it is a prime number.
+Explanation: The code defines a function 'is_palindrome' that takes a string 'string' as input and checks if it's a palindrome or not. Here's how it works:
+
+1. Convert the string to lowercase using 'lower_string = string.lower()'. This is done to make the check case-insensitive.
+2. Reverse the string using 'reversed_string = lower_string[::-1]'. The slicing notation '[::-1]' reverses the string.
+3. Check if the reversed string is equal to the original string using the comparison 'lower_string == reversed_string'.
+4. Return True if they are equal, indicating that the string is a palindrome; otherwise, return False.
