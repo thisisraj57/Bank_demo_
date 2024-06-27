@@ -1,18 +1,36 @@
-Here is the Python code:
 ```python
-# Python code to check if a string is palindrome or not
-def is_palindrome(string):
-    # Convert the string to lowercase for case insensitivity
-    lower_string = string.lower()
-    # Reverse the string
-    reversed_string = lower_string[::-1]
-    # Check if the reversed string is equal to the original string
-    return lower_string == reversed_string
+def is_prime(num):
+    """
+    Checks if a number is prime.
+
+    Args:
+    num: The number to check.
+
+    Returns:
+    True if num is prime, False otherwise.
+    """
+    if num <= 1:
+        return False
+
+    for i in range(2, int(num ** 0.5) + 1):
+        if num % i == 0:
+            return False
+
+    return True
 ```
 
-Explanation: The code defines a function 'is_palindrome' that takes a string 'string' as input and checks if it's a palindrome or not. Here's how it works:
+Explanation: The given Python program is designed to determine whether a provided number is prime or not. Prime numbers are positive integers greater than 1 that have no positive divisors other than 1 and themselves.
 
-1. Convert the string to lowercase using 'lower_string = string.lower()'. This is done to make the check case-insensitive.
-2. Reverse the string using 'reversed_string = lower_string[::-1]'. The slicing notation '[::-1]' reverses the string.
-3. Check if the reversed string is equal to the original string using the comparison 'lower_string == reversed_string'.
-4. Return True if they are equal, indicating that the string is a palindrome; otherwise, return False.
+The function, is_prime, takes an integer, num, as its argument and proceeds to perform the primality test. Here's a step-by-step explanation of how the code works:
+
+1. **Boundary conditions**: The function initially checks for two boundary conditions:
+   - If num is less than or equal to 1, it is not prime. This is because prime numbers are defined to be greater than 1.
+   - If num is equal to 2, it is prime. This is because 2 is the smallest prime number.
+
+2. **Iteration**: If neither of the boundary conditions is met, the code enters a loop that iterates from 2 up to the square root of num. This optimization is employed to reduce the number of iterations required to check for divisibility.
+
+3. **Divisibility check**: In each iteration of the loop, the code checks if num is divisible evenly by the current index i. If the remainder of the division (num % i) is 0, it means that i is a factor of num, indicating that num is not prime.
+
+4. **Prime determination**: If the loop completes without finding any factors, it means that num has no divisors other than 1 and itself, making it a prime number. The function returns True in this case.
+
+5. **Non-prime determination**: If the loop finds a factor, the function returns False, indicating that num is not a prime number.
