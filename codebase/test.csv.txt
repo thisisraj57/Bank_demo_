@@ -1,0 +1,35 @@
+**Data Structure**
+
+**Name:** PersonEntry
+
+**Description:** A simple data structure representing a person with two fields:
+
+* **name:** The name of the person (string).
+* **age:** The age of the person (integer).
+
+**Code:**
+
+```python
+PersonEntry = namedtuple("PersonEntry", ["name", "age"])
+```
+
+**Usage:**
+
+To create a `PersonEntry` object, use the following syntax:
+
+```python
+person = PersonEntry(name="Raj", age=33)
+```
+
+**Example**
+
+```python
+# Create a PersonEntry object
+person = PersonEntry(name="Raj", age=33)
+
+# Access the name field
+print(person.name)  # Output: Raj
+
+# Access the age field
+print(person.age)  # Output: 33
+```
