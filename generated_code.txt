@@ -1,32 +1,16 @@
+Here is the Python code:
 ```python
-# Function to check if a number is prime
-def is_prime(num):
-    if num == 2:
-        return True
-    if num % 2 == 0 or num <= 1:
-        return False
-
-    # Iterate from 3 to square root of number
-    for i in range(3, int(num ** 0.5) + 1, 2):
-        if num % i == 0:
-            return False
-
-    return True
-
-# Function to generate prime numbers up to a limit
-def generate_primes(limit):
-    prime_numbers = []
-
-    # Iterate from 2 to the specified limit
-    for num in range(2, limit + 1):
-        if is_prime(num):
-            prime_numbers.append(num)
-
-    return prime_numbers
+def is_prime(number): 
+   if number <= 1: 
+       return False
+   for i in range(2, number): 
+       if number % i == 0: 
+           return False
+   return True
 ```
 Explanation:
-The code defines two functions to handle prime numbers:
-
-1. `is_prime`: Checks if a given number is prime. It handles special cases like 2 and odd numbers, then iterates from 3 to the square root of the number to check for divisibility. 
-
-2. `generate_primes`: Generates a list of prime numbers up to a specified limit. It iterates through the range and calls `is_prime` to check each number, accumulating the prime numbers in a list.
+This code defines a function named 'is_prime' that determines whether a given number is prime or not. Here's how it works:
+- It starts by checking if the number is less than or equal to 1. If it is, the function immediately returns 'False' because prime numbers are greater than 1.
+- Next, it enters a for loop that starts with i set to 2 and iterates until i is less than the number. This loop checks for divisibility.
+- Inside the loop, it checks if the number is divisible by i. If the remainder of the division (number % i) is 0, it means the number is divisible by i and is therefore not prime. In this case, the function returns 'False'.
+- If the loop completes without finding any factors of the number, the function returns 'True' because such a number is considered prime according to the definition of prime numbers.
