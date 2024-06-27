@@ -1,22 +1,16 @@
-Here is the Mermaid sequence diagram syntax for the provided code snippet:
+Here is the Mermaid code for the sequence diagram:
 ```mermaid
 sequenceDiagram
-participant SpringBoot2JPAWithSpringDataRestApplication
+participant App
 participant StudentDataRestRepository
-SpringBoot2JPAWithSpringDataRestApplication->StudentDataRestRepository: @Autowired
-StudentDataRestRepository->SpringBoot2JPAWithSpringDataRestApplication: initializes the repository
-SpringBoot2JPAWithSpringDataRestApplication->SpringApplication: runs the Spring application
-SpringApplication->SpringBoot2JPAWithSpringDataRestApplication: delegates the execution
+
+App->StudentDataRestRepository: calls main()
+activate App
+activate StudentDataRestRepository
+StudentDataRestRepository->App: returns
+deactivate StudentDataRestRepository
+deactivate App
 ```
 
 Explanation:
-
-The Mermaid syntax defines a sequence diagram with two participants, SpringBoot2JPAWithSpringDataRestApplication and StudentDataRestRepository.
-
-1. The first interaction in the diagram shows SpringBoot2JPAWithSpringDataRestApplication automatically wiring the StudentDataRestRepository by using its @Autowired annotation. This creates an instance of the repository and injects it into the SpringBoot2JPAWithSpringDataRestApplication class.
-
-2. The second interaction represents the initialization of the repository within the SpringBoot2JPAWithSpringDataRestApplication.
-
-3. The third interaction demonstrates SpringBoot2JPAWithSpringDataRestApplication running the Spring application by invoking the run method of the SpringApplication class.
-
-4. The final interaction is a return arrow from SpringApplication back to SpringBoot2JPAWithSpringDataRestApplication, indicating that SpringApplication delegates the execution back to the SpringBoot2JPAWithSpringDataRestApplication class.
+The Mermaid syntax for the sequence diagram describes the interactions between the application (App) and the StudentDataRestRepository. The sequence diagram shows that the App calls the main() method on the StudentDataRestRepository, which then returns. The activate and deactivate commands are used to show the active state of each participant during the interaction.
