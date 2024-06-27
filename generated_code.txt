@@ -1,16 +1,32 @@
-Here is the Mermaid code for the sequence diagram:
-```mermaid
-sequenceDiagram
-participant App
-participant StudentDataRestRepository
+```python
+# Function to check if a number is prime
+def is_prime(num):
+    if num == 2:
+        return True
+    if num % 2 == 0 or num <= 1:
+        return False
 
-App->StudentDataRestRepository: calls main()
-activate App
-activate StudentDataRestRepository
-StudentDataRestRepository->App: returns
-deactivate StudentDataRestRepository
-deactivate App
+    # Iterate from 3 to square root of number
+    for i in range(3, int(num ** 0.5) + 1, 2):
+        if num % i == 0:
+            return False
+
+    return True
+
+# Function to generate prime numbers up to a limit
+def generate_primes(limit):
+    prime_numbers = []
+
+    # Iterate from 2 to the specified limit
+    for num in range(2, limit + 1):
+        if is_prime(num):
+            prime_numbers.append(num)
+
+    return prime_numbers
 ```
-
 Explanation:
-The Mermaid syntax for the sequence diagram describes the interactions between the application (App) and the StudentDataRestRepository. The sequence diagram shows that the App calls the main() method on the StudentDataRestRepository, which then returns. The activate and deactivate commands are used to show the active state of each participant during the interaction.
+The code defines two functions to handle prime numbers:
+
+1. `is_prime`: Checks if a given number is prime. It handles special cases like 2 and odd numbers, then iterates from 3 to the square root of the number to check for divisibility. 
+
+2. `generate_primes`: Generates a list of prime numbers up to a specified limit. It iterates through the range and calls `is_prime` to check each number, accumulating the prime numbers in a list.
