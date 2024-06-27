@@ -1,17 +1,13 @@
-def is_prime(num):
-    if num <= 1:
-        return False  # 1 and negative numbers are not prime
-    for i in range(2, num):
-        if num % i == 0:
-            return False  # If any number between 2 and num-1 divides num evenly, it's not prime
-    return True  # If no number between 2 and num-1 divides num evenly, it's prime
+# Function to check if a string is a palindrome
+def is_palindrome(string):
+    # Convert the string to lowercase and remove all spaces
+    string = string.lower().replace(" ", "")
+    # Reverse the string
+    reversed_string = string[::-1]
+    # Check if the original string and the reversed string are equal
+    return string == reversed_string
 
 # Example usage
-number = int(input("Enter a number: "))
-if is_prime(number):
-    print(f"{number} is a prime number.")
-else:
-    print(f"{number} is not a prime number.")
-    
-    
-    kanishka raj
+input_string = "racecar"
+result = is_palindrome(input_string)
+print(result)  # Output: True
