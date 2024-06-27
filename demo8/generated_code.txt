@@ -1,0 +1,11 @@
+```mermaid
+sequenceDiagram
+participant User
+participant SpringBoot2JPAWithSpringDataRestApplication
+participant StudentDataRestRepository
+User->SpringBoot2JPAWithSpringDataRestApplication: calls main method
+SpringBoot2JPAWithSpringDataRestApplication->StudentDataRestRepository: calls autowired repository
+```
+
+Explanation:
+The sequence diagram shows the interactions between the User, SpringBoot2JPAWithSpringDataRestApplication, and StudentDataRestRepository classes. The User calls the main method of the SpringBoot2JPAWithSpringDataRestApplication class, which then autowires the StudentDataRestRepository class.
