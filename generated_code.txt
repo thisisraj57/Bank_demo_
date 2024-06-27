@@ -1,16 +1,15 @@
 Here is the Python code:
 ```python
-def is_prime(number): 
-   if number <= 1: 
-       return False
-   for i in range(2, number): 
-       if number % i == 0: 
-           return False
-   return True
+# Function to check if a number is prime
+def is_prime(number):
+    # Iterate from 2 to the square root of the given number
+    for i in range(2, int(number**0.5) + 1):
+        # If the number is divisible by any number from 2 to its square root, it is not prime
+        if number % i == 0:
+            return False
+    # If the number is not divisible by any number from 2 to its square root, it is prime
+    return True
 ```
+
 Explanation:
-This code defines a function named 'is_prime' that determines whether a given number is prime or not. Here's how it works:
-- It starts by checking if the number is less than or equal to 1. If it is, the function immediately returns 'False' because prime numbers are greater than 1.
-- Next, it enters a for loop that starts with i set to 2 and iterates until i is less than the number. This loop checks for divisibility.
-- Inside the loop, it checks if the number is divisible by i. If the remainder of the division (number % i) is 0, it means the number is divisible by i and is therefore not prime. In this case, the function returns 'False'.
-- If the loop completes without finding any factors of the number, the function returns 'True' because such a number is considered prime according to the definition of prime numbers.
+The provided Python code defines a function named 'is_prime' that checks if a given number is prime. The function takes a single argument 'number' which represents the number to be checked. It iterates through all the numbers from 2 to the square root of the given number and checks if the number is divisible by any of these numbers. If the number is divisible by any number, the function returns False indicating that it is not a prime number. If the number is not divisible by any number from 2 to its square root, the function returns True indicating it is a prime number.
