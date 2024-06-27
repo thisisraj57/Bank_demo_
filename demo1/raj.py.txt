@@ -1,0 +1,12 @@
+```
+print("HELLO WORLD")
+```
+
+This code snippet is written in Python and performs the following actions:
+
+- `print()` function:
+   - A built-in Python function that is used to display information on the standard output device (usually the console or terminal).
+- `"HELLO WORLD"`:
+   - A string literal containing the text "HELLO WORLD".
+
+When you run this code, the Python interpreter will execute the `print()` function with the provided string argument. As a result, the string "HELLO WORLD" will be displayed on the console or terminal where the code was executed.
