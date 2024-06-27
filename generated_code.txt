@@ -11,3 +11,6 @@ def is_palindrome(string):
 input_string = "racecar"
 result = is_palindrome(input_string)
 print(result)  # Output: True
+
+
+Kanishka Raj - ABC
