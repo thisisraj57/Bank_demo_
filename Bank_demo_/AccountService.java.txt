@@ -1,0 +1,30 @@
+**Class: AccountService**
+
+**Description:**
+Provides services for managing accounts in the system.
+
+**Attributes:**
+
+* **accountRepository:** An instance of the `AccountRepository` interface, which provides access to the database for CRUD operations on `Account` entities.
+
+**Methods:**
+
+* **openAccount:** Opens a new account for a customer.
+* **onboardAccount:** Performs additional onboarding steps for a newly opened account, such as setting up initial account settings and sending welcome emails.
+
+**Example Usage:**
+
+```java
+// Create an instance of the AccountService
+AccountService accountService = new AccountService();
+
+// Open a new account
+Account account = accountService.openAccount(customer);
+
+// Onboard the account
+accountService.onboardAccount(account);
+```
+
+**Additional Notes:**
+
+The `@Autowired` annotation is used to automatically wire the `accountRepository` dependency into the `AccountService` instance. This means that Spring will automatically create and inject an instance of the `AccountRepository` into the `AccountService` when it is instantiated.
