@@ -1,0 +1,36 @@
+**Function:** print
+
+**Description:**
+The `print` function prints the specified message to the standard output stream.
+
+**Syntax:**
+
+```
+print(message)
+```
+
+**Parameters:**
+
+- `message`: The message to print.
+
+**Return Value:**
+
+- None
+
+**Example:**
+
+```
+print("Hello, world!")
+```
+
+**Output:**
+
+```
+Hello, world!
+```
+
+**Notes:**
+
+- The `print` function does not automatically add a newline character to the end of the message. To add a newline character, use the `println` function instead.
+- The `print` function can be used to print any type of data, including strings, numbers, and objects.
+- The `print` function is often used for debugging purposes, as it can be used to output the values of variables and expressions.
