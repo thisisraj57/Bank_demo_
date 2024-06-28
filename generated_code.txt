@@ -1,27 +1,25 @@
-```python
-def reverse_str(s):
+def reverse_string(string):
     """
     Reverses the order of characters in a string.
 
     Args:
-        s (str): The string to reverse.
+        string (str): The string to be reversed.
 
     Returns:
         str: The reversed string.
     """
 
-    # Check if the string is empty.
-    if not s:
-        return s
+    # Check if the string is empty or None
+    if not string:
+        return string
 
-    # Create a new string to store the reversed string.
-    r = ""
+    # Create a new list to store the reversed string
+    reversed_string = []
 
-    # Iterate over the string in reverse order.
-    for i in range(len(s) - 1, -1, -1):
-        # Append the character at index i to the new string.
-        r += s[i]
+    # Iterate over the string in reverse order
+    for i in range(len(string) - 1, -1, -1):
+        # Append the character at index i to the reversed string
+        reversed_string.append(string[i])
 
-    # Return the reversed string.
-    return r
-```
+    # Join the characters in the reversed string and return it
+    return ''.join(reversed_string)
