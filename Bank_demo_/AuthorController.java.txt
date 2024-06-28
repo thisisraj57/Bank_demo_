@@ -1,0 +1,53 @@
+**Class: AuthorController**
+
+**Description:**
+A REST controller for managing authors in a library system.
+
+**Attributes:**
+
+* **authorRepository:** An instance of the `AuthorRepository` interface, which provides the data access methods for managing authors.
+
+**Methods:**
+
+* **createAuthor:** Creates a new author in the system.
+* **getAllAuthors:** Retrieves a list of all authors in the system.
+* **getAuthorById:** Retrieves an author by its unique identifier.
+* **updateAuthor:** Updates an existing author in the system.
+* **deleteAuthor:** Deletes an author from the system.
+
+**Example Usage:**
+
+```java
+// Create an instance of the AuthorController
+AuthorController authorController = new AuthorController();
+
+// Create a new author
+Author newAuthor = new Author();
+newAuthor.setName("John Doe");
+newAuthor.setDescription("A famous author");
+Author createdAuthor = authorController.createAuthor(newAuthor);
+
+// Get all authors
+List<Author> authors = authorController.getAllAuthors();
+
+// Get an author by ID
+Author author = authorController.getAuthorById(1L);
+
+// Update an author
+Author updatedAuthor = new Author();
+updatedAuthor.setId(1L);
+updatedAuthor.setName("Jane Doe");
+updatedAuthor.setDescription("An even more famous author");
+authorController.updateAuthor(1L, updatedAuthor);
+
+// Delete an author
+authorController.deleteAuthor(1L);
+```
+
+**Additional Notes:**
+
+* The `@Autowired` annotation is used to automatically wire the `authorRepository` dependency into the `AuthorController` instance.
+* The `@PostMapping`, `@GetMapping`, `@PutMapping`, and `@DeleteMapping` annotations are used to map HTTP request methods to the corresponding controller methods.
+* The `@PathVariable` annotation is used to extract path variables from the request URL.
+* The `@RequestBody` annotation is used to bind the request body to a method parameter.
+* The `orElseThrow` method is used to throw a `ResourceNotFoundException` if the author with the specified ID is not found in the database.
