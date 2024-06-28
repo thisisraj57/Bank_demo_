@@ -1,0 +1,37 @@
+**Class:** AccountService
+
+**Description:**
+The `AccountService` class provides methods for opening and onboarding accounts. It uses the `AccountRepository` to perform CRUD operations on the `Account` entity.
+
+**Annotations:**
+
+* `@Autowired`: Indicates that the `accountRepository` field should be automatically wired by Spring.
+
+**Methods:**
+
+* **openAccount:** Opens a new account.
+* **onboardAccount:** Onboards a new account.
+
+**Example Usage:**
+
+```java
+@Service
+public class AccountService {
+
+  @Autowired
+  private AccountRepository accountRepository;
+
+  public Account openAccount(Account account) {
+    return accountRepository.save(account);
+  }
+
+  public Account onboardAccount(Account account) {
+    // Perform onboarding logic
+    return accountRepository.save(account);
+  }
+}
+```
+
+This service can be used to open and onboard new accounts. For example, to open a new account, you can call the `openAccount` method with the account data. To onboard a new account, you can call the `onboardAccount` method with the account data.
+
+The `AccountService` class delegates the actual CRUD operations to the `AccountRepository` class. This separation of concerns makes the code more modular and easier to maintain.
