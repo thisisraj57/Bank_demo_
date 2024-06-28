@@ -1,0 +1,51 @@
+**Class: BookController**
+
+**Description:**
+A REST controller for managing books in a library system.
+
+**Attributes:**
+
+* **bookService:** An instance of the `BookService` interface, which provides the business logic for managing books.
+
+**Methods:**
+
+* **getAllBooks:** Retrieves a list of all books in the system.
+* **getBookById:** Retrieves a book by its unique identifier.
+* **createBook:** Creates a new book in the system.
+* **updateBook:** Updates an existing book in the system.
+* **deleteBook:** Deletes a book from the system.
+
+**Example Usage:**
+
+```java
+// Create an instance of the BookController
+BookController bookController = new BookController();
+
+// Get all books
+List<Book> books = bookController.getAllBooks();
+
+// Get a book by ID
+Book book = bookController.getBookById(1);
+
+// Create a new book
+Book newBook = new Book();
+newBook.setTitle("My New Book");
+newBook.setAuthor("John Doe");
+Book createdBook = bookController.createBook(newBook);
+
+// Update a book
+Book updatedBook = new Book();
+updatedBook.setId(1);
+updatedBook.setTitle("My Updated Book");
+bookController.updateBook(1, updatedBook);
+
+// Delete a book
+bookController.deleteBook(1);
+```
+
+**Additional Notes:**
+
+* The `@Autowired` annotation is used to automatically wire the `bookService` dependency into the `BookController` instance.
+* The `@GetMapping`, `@PostMapping`, `@PutMapping`, and `@DeleteMapping` annotations are used to map HTTP request methods to the corresponding controller methods.
+* The `@PathVariable` annotation is used to extract path variables from the request URL.
+* The `@RequestBody` annotation is used to bind the request body to a method parameter.
