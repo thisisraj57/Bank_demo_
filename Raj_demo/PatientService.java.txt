@@ -1,0 +1,61 @@
+**Class:** PatientService
+
+**Purpose:** Service for managing patients in a hospital management system.
+
+**Properties:**
+
+* **patientRepository:** Instance of the PatientRepository interface, used for performing database operations on patients.
+
+**Methods:**
+
+* **getAllPatients():** Retrieves a list of all patients.
+* **getPatientById(Long id):** Retrieves a patient by their ID.
+* **createPatient(Patient patient):** Creates a new patient.
+* **updatePatient(Long id, Patient patient):** Updates an existing patient.
+* **deletePatient(Long id):** Deletes a patient by their ID.
+
+**Usage:**
+
+This class is a service class for managing patients. It provides methods for CRUD operations on patients. The service class delegates the actual database operations to the PatientRepository interface.
+
+**Example:**
+
+```java
+@Service
+public class PatientService {
+
+    @Autowired
+    private PatientRepository patientRepository;
+
+    // Get all patients
+    public List<Patient> getAllPatients() {
+        return patientRepository.findAll();
+    }
+
+    // Get a patient by ID
+    public Patient getPatientById(Long id) {
+        return patientRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Patient not found with id :" + id));
+    }
+
+    // Create a new patient
+    public Patient createPatient(Patient patient) {
+        return patientRepository.save(patient);
+    }
+
+    // Update a patient
+    public Patient updatePatient(Long id, Patient patient) {
+        Patient existingPatient = patientRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Patient not found with id :" + id));
+        existingPatient.setName(patient.getName());
+        existingPatient.setAge(patient.getAge());
+        existingPatient.setGender(patient.getGender());
+        return patientRepository.save(existingPatient);
+    }
+
+    // Delete a patient
+    public void deletePatient(Long id) {
+        patientRepository.deleteById(id);
+    }
+}
+```
+
+In this example, the PatientService class is used to perform business logic related to patients. The `@Service` annotation indicates that this class is a service class, and the `@Autowired` annotation is used to inject the PatientRepository instance into the service class.
