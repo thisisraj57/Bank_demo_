@@ -1,0 +1,24 @@
+**Class:** HospitalManagementApplication
+
+**Purpose:** Main application class for a hospital management system using Spring Boot.
+
+**Methods:**
+
+* **main(String[] args):** Entry point of the application. Initializes the Spring application context and starts the server.
+
+**Usage:**
+
+This class is the starting point of the Spring Boot application. It is annotated with `@SpringBootApplication`, which indicates that it is the main class of a Spring Boot application. The `main` method is the entry point of the application and is responsible for initializing the Spring application context and starting the server.
+
+**Example:**
+
+```java
+public class HospitalManagementApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(HospitalManagementApplication.class, args);
+    }
+}
+```
+
+In this example, the `HospitalManagementApplication` class is the main class of the application. When you run this class, the Spring application context will be initialized and the server will be started.
