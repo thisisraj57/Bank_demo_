@@ -1,0 +1,27 @@
+**Data Structure**
+
+The code represents a table with the following columns:
+
+* Name
+* Age
+* Company
+* Department
+
+**Data**
+
+The table contains the following data:
+
+| Name | Age | Company | Department |
+|---|---|---|---|
+| raj | 55 | abc | mop |
+| kishor | 77 | ifr | ks |
+| harsha | 79 | HFJ | KK |
+
+**Usage**
+
+The code can be used to access the data in the table. For example, the following code would print the name of the person with the highest age:
+
+```
+max_age = max(table, key=lambda x: x[1])
+print(max_age[0])
+```
