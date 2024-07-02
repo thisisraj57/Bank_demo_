@@ -1,0 +1,27 @@
+**Class:** ECommerceApplication
+
+**Purpose:** This is the main application class that serves as the entry point for the Spring Boot application.
+
+**Method:**
+
+* **main(String[] args):** This is the main method of the application. It initializes the Spring application context and starts the application.
+
+**Usage:**
+
+To run the application, you can execute the following command:
+
+```
+java -jar e-commerce.jar
+```
+
+**Example:**
+
+```java
+public class ECommerceApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(ECommerceApplication.class, args);
+    }
+}
+```
+
+In this example, the ECommerceApplication class is the main application class. When you run the main method, it will start the Spring Boot application and load the necessary beans and configurations.
