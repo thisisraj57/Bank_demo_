@@ -1,0 +1,66 @@
+## Vehicle Classes
+
+This code defines three classes: `Car`, `Boat`, and `Plane`, each representing a different type of vehicle. Each class has an `__init__` method to initialize the vehicle's brand and model, and a `move` method to print a message indicating how the vehicle moves.
+
+### Class Car
+
+```python
+class Car:
+  def __init__(self, brand, model):
+    self.brand = brand
+    self.model = model
+
+  def move(self):
+    print("Drive!")
+```
+
+The `Car` class represents a car. It has two attributes: `brand` and `model`, which are initialized in the `__init__` method. The `move` method prints the message "Drive!" to indicate that the car is moving.
+
+### Class Boat
+
+```python
+class Boat:
+  def __init__(self, brand, model):
+    self.brand = brand
+    self.model = model
+
+  def move(self):
+    print("Sail!")
+```
+
+The `Boat` class represents a boat. It has two attributes: `brand` and `model`, which are initialized in the `__init__` method. The `move` method prints the message "Sail!" to indicate that the boat is moving.
+
+### Class Plane
+
+```python
+class Plane:
+  def __init__(self, brand, model):
+    self.brand = brand
+    self.model = model
+
+  def move(self):
+    print("Fly!")
+```
+
+The `Plane` class represents a plane. It has two attributes: `brand` and `model`, which are initialized in the `__init__` method. The `move` method prints the message "Fly!" to indicate that the plane is moving.
+
+### Usage
+
+The following code creates instances of the `Car`, `Boat`, and `Plane` classes and calls the `move` method on each instance:
+
+```python
+car1 = Car("Ford", "Mustang")       #Create a Car class
+boat1 = Boat("Ibiza", "Touring 20") #Create a Boat class
+plane1 = Plane("Boeing", "747")     #Create a Plane class
+
+for x in (car1, boat1, plane1):
+  x.move()
+```
+
+This code will print the following output:
+
+```
+Drive!
+Sail!
+Fly!
+```
