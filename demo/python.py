@@ -1,5 +1,1 @@
 print("HELLO WORLD")
-
-
-
-KANISHKA RAJ -ABC
