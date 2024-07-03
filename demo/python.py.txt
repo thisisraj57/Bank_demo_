@@ -1,0 +1,36 @@
+**Function:** print
+
+**Description:**
+The `print` function in Python is used to display output to the console or other output devices. It takes one or more arguments, which are the values to be printed.
+
+**Syntax:**
+
+```python
+print(*objects, sep=' ', end='\n', file=None, flush=False)
+```
+
+**Parameters:**
+
+* **objects:** The values to be printed. These can be any type of object, such as strings, numbers, lists, or dictionaries.
+* **sep:** (optional) The separator to be used between the objects. By default, a single space is used.
+* **end:** (optional) The string to be printed at the end of the output. By default, a newline character is used.
+* **file:** (optional) The file object to which the output should be written. By default, the output is written to the console.
+* **flush:** (optional) A Boolean value indicating whether the output should be flushed immediately. By default, the output is buffered and flushed when the buffer is full or when the `flush` method is called.
+
+**Return Value:**
+
+The `print` function does not return any value.
+
+**Example:**
+
+The following code prints the string "Hello World" to the console:
+
+```python
+print("Hello World")
+```
+
+**Output:**
+
+```
+Hello World
+```
