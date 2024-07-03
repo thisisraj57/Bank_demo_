@@ -1,0 +1,47 @@
+## Remove Empty List from List using filter() Method
+
+### Description
+
+The provided Python code demonstrates how to remove empty lists from a given list using the `filter()` method. The `filter()` method takes a function and an iterable as arguments and returns a new iterable containing only the elements for which the function returns True.
+
+### Code
+
+```python
+# Python3 Code to Demonstrate Remove empty List
+# from List using filter() Method
+ 
+# Initializing list by custom values
+test_list = [5, 6, [], 3, [], [], 9]
+ 
+# Printing original list
+print("The original list is : " + str(test_list))
+ 
+# Removing empty List from List
+# using filter() method
+res = list(filter(None, test_list))
+ 
+# Printing the resultant list
+print("List after empty list removal : " + str(res))
+```
+
+### Example
+
+#### Input
+
+```
+test_list = [5, 6, [], 3, [], [], 9]
+```
+
+#### Output
+
+```
+The original list is : [5, 6, [], 3, [], [], 9]
+List after empty list removal : [5, 6, 3, 9]
+```
+
+### Explanation
+
+1. The `test_list` is initialized with a list containing both non-empty and empty lists.
+2. The `filter()` method is used to remove empty lists from the `test_list`. The `None` argument is passed to the `filter()` method, which acts as a filter function. It returns True for non-empty lists and False for empty lists.
+3. The result of the `filter()` method is converted to a list using the `list()` function and stored in the `res` variable.
+4. The `res` variable now contains a list with all the non-empty lists from the original `test_list`.
