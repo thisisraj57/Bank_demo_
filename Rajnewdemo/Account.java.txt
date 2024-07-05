@@ -1,0 +1,69 @@
+# Account Class Documentation
+
+## Overview
+The `Account` class represents a user's account in a system. It includes fields for the account's unique identifier, customer name, email, and status. The class uses annotations to map the fields to a database table.
+
+## Annotations
+- `@Id`: Specifies the primary key of an entity.
+- `@GeneratedValue(strategy = GenerationType.IDENTITY)`: Indicates that the primary key should be generated automatically by the database.
+
+## Fields
+- `id`: A unique identifier for the account. It is of type `Long` and is automatically generated.
+- `customerName`: The name of the customer associated with the account. It is of type `String`.
+- `email`: The email address of the customer. It is of type `String`.
+- `status`: The status of the account (e.g., active, inactive). It is of type `String`.
+
+## Methods
+
+### Getters and Setters
+The class provides getter and setter methods for each field to allow for encapsulation and data manipulation.
+
+#### `getId()`
+- **Description**: Returns the unique identifier of the account.
+- **Returns**: `Long` - the account ID.
+
+#### `setId(Long id)`
+- **Description**: Sets the unique identifier of the account.
+- **Parameters**: 
+  - `id` (`Long`): The account ID to set.
+
+#### `getCustomerName()`
+- **Description**: Returns the name of the customer associated with the account.
+- **Returns**: `String` - the customer name.
+
+#### `setCustomerName(String customerName)`
+- **Description**: Sets the name of the customer associated with the account.
+- **Parameters**: 
+  - `customerName` (`String`): The customer name to set.
+
+#### `getEmail()`
+- **Description**: Returns the email address of the customer.
+- **Returns**: `String` - the email address.
+
+#### `setEmail(String email)`
+- **Description**: Sets the email address of the customer.
+- **Parameters**: 
+  - `email` (`String`): The email address to set.
+
+#### `getStatus()`
+- **Description**: Returns the status of the account.
+- **Returns**: `String` - the account status.
+
+#### `setStatus(String status)`
+- **Description**: Sets the status of the account.
+- **Parameters**: 
+  - `status` (`String`): The account status to set.
+
+## Example Usage
+```java
+Account account = new Account();
+account.setCustomerName("John Doe");
+account.setEmail("john.doe@example.com");
+account.setStatus("active");
+
+System.out.println("Customer Name: " + account.getCustomerName());
+System.out.println("Email: " + account.getEmail());
+System.out.println("Status: " + account.getStatus());
+```
+
+This example creates an `Account` object, sets its fields, and prints the values to the console.
