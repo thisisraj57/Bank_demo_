@@ -1,0 +1,92 @@
+# Documentation for the Code
+
+## Overview
+This script reads a dataset from a CSV file, preprocesses the data, trains a Decision Tree Classifier using the preprocessed data, and visualizes the decision tree.
+
+## Dependencies
+The script requires the following Python libraries:
+- `pandas`: For data manipulation and analysis.
+- `sklearn`: For machine learning algorithms and tools.
+- `matplotlib`: For plotting and visualization.
+
+## Code Breakdown
+
+### Import Libraries
+```python
+import pandas
+from sklearn import tree
+from sklearn.tree import DecisionTreeClassifier
+import matplotlib.pyplot as plt
+```
+- `pandas`: Used for reading and manipulating the dataset.
+- `sklearn.tree`: Contains the `DecisionTreeClassifier` and `plot_tree` for creating and visualizing the decision tree.
+- `matplotlib.pyplot`: Used for plotting the decision tree.
+
+### Read the Dataset
+```python
+df = pandas.read_csv("data.csv")
+```
+- Reads the dataset from a CSV file named `data.csv` into a pandas DataFrame `df`.
+
+### Data Preprocessing
+```python
+d = {'UK': 0, 'USA': 1, 'N': 2}
+df['Nationality'] = df['Nationality'].map(d)
+d = {'YES': 1, 'NO': 0}
+df['Go'] = df['Go'].map(d)
+```
+- Maps categorical values to numerical values for the `Nationality` and `Go` columns.
+  - `Nationality`: 'UK' -> 0, 'USA' -> 1, 'N' -> 2
+  - `Go`: 'YES' -> 1, 'NO' -> 0
+
+### Define Features and Target Variable
+```python
+features = ['Age', 'Experience', 'Rank', 'Nationality']
+
+X = df[features]
+y = df['Go']
+```
+- `features`: List of column names to be used as features for the model.
+- `X`: DataFrame containing the feature columns.
+- `y`: Series containing the target variable (`Go`).
+
+### Train the Decision Tree Classifier
+```python
+dtree = DecisionTreeClassifier()
+dtree = dtree.fit(X, y)
+```
+- Initializes a `DecisionTreeClassifier` object.
+- Fits the classifier to the feature matrix `X` and target vector `y`.
+
+### Visualize the Decision Tree
+```python
+tree.plot_tree(dtree, feature_names=features)
+```
+- Plots the trained decision tree using `plot_tree` from `sklearn.tree`.
+- `feature_names`: List of feature names to be displayed in the plot.
+
+## Usage
+1. Ensure that the required libraries are installed:
+   ```bash
+   pip install pandas scikit-learn matplotlib
+   ```
+2. Place the `data.csv` file in the same directory as the script.
+3. Run the script:
+   ```bash
+   python script_name.py
+   ```
+4. The decision tree will be displayed as a plot.
+
+## Notes
+- The `data.csv` file should contain the columns: `Age`, `Experience`, `Rank`, `Nationality`, and `Go`.
+- The script assumes that the `Nationality` and `Go` columns contain the specified categorical values.
+
+## Example
+Given a `data.csv` file with the following content:
+```
+Age,Experience,Rank,Nationality,Go
+25,3,2,UK,YES
+35,10,1,USA,NO
+45,15,3,N,YES
+```
+The script will preprocess the data, train a decision tree classifier, and visualize the decision tree.
