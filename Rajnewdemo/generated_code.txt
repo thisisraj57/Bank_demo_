@@ -1,0 +1,135 @@
+Here are the unit test cases for the Java Spring Boot application for Account Management in iPYMT. We will use JUnit and Mockito for writing the test cases.
+
+### 1. AccountServiceTest
+
+```java
+package com.ipymt.accountmanagement.service;
+
+import com.ipymt.accountmanagement.entity.Account;
+import com.ipymt.accountmanagement.repository.AccountRepository;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
+
+class AccountServiceTest {
+
+    @Mock
+    private AccountRepository accountRepository;
+
+    @Mock
+    private NotificationService notificationService;
+
+    @InjectMocks
+    private AccountService accountService;
+
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
+
+    @Test
+    void testOpenAccount() {
+        Account account = new Account();
+        account.setCustomerName("John Doe");
+        account.setEmail("john.doe@example.com");
+
+        when(accountRepository.save(any(Account.class))).thenReturn(account);
+
+        Account savedAccount = accountService.openAccount(account);
+
+        assertEquals("Pending Approval", savedAccount.getStatus());
+        verify(notificationService, times(1)).notifyCustomer(savedAccount);
+    }
+
+    @Test
+    void testGetAllAccounts() {
+        Account account1 = new Account();
+        Account account2 = new Account();
+        List<Account> accounts = Arrays.asList(account1, account2);
+
+        when(accountRepository.findAll()).thenReturn(accounts);
+
+        List<Account> result = accountService.getAllAccounts();
+
+        assertEquals(2, result.size());
+    }
+
+    @Test
+    void testApproveAccount() {
+        Account account = new Account();
+        account.setId(1L);
+        account.setStatus("Pending Approval");
+
+        when(accountRepository.findById(1L)).thenReturn(Optional.of(account));
+        when(accountRepository.save(any(Account.class))).thenReturn(account);
+
+        Account approvedAccount = accountService.approveAccount(1L);
+
+        assertEquals("Approved", approvedAccount.getStatus());
+        verify(notificationService, times(1)).notifyCustomer(approvedAccount);
+    }
+}
+```
+
+### 2. AccountControllerTest
+
+```java
+package com.ipymt.accountmanagement.controller;
+
+import com.ipymt.accountmanagement.entity.Account;
+import com.ipymt.accountmanagement.service.AccountService;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+class AccountControllerTest {
+
+    @Mock
+    private AccountService accountService;
+
+    @InjectMocks
+    private AccountController accountController;
+
+    private MockMvc mockMvc;
+
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
+        mockMvc = MockMvcBuilders.standaloneSetup(accountController).build();
+    }
+
+    @Test
+    void testOpenAccount() throws Exception {
+        Account account = new Account();
+        account.setCustomerName("John Doe");
+        account.setEmail("john.doe@example.com");
+
+        when(accountService.openAccount(any(Account.class))).thenReturn(account);
+
+        mockMvc.perform(post("/api/accounts/open")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"customerName\":\"John Doe\",\"email\":\"john.doe@example.com\"}"))
+                .andExpect(status().
