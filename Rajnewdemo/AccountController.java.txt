@@ -1,0 +1,138 @@
+# AccountController Documentation
+
+## Overview
+`AccountController` is a Spring Boot REST controller that manages account-related operations. It provides endpoints to open a new account, retrieve all accounts, and approve an account by its ID.
+
+## Annotations
+- `@RestController`: Indicates that this class is a REST controller.
+- `@RequestMapping("/accounts")`: Maps HTTP requests to `/accounts` to this controller.
+- `@Autowired`: Injects the `AccountService` dependency.
+
+## Dependencies
+- `AccountService`: A service class that contains the business logic for account operations.
+
+## Endpoints
+
+### 1. Open Account
+#### Endpoint
+- **URL**: `/accounts/open`
+- **HTTP Method**: `POST`
+- **Request Body**: `Account` object
+- **Response**: `Account` object
+
+#### Description
+This endpoint allows the creation of a new account. It accepts an `Account` object in the request body and returns the created `Account` object.
+
+#### Example Request
+```json
+POST /accounts/open
+{
+  "name": "John Doe",
+  "balance": 1000.0
+}
+```
+
+#### Example Response
+```json
+{
+  "id": 1,
+  "name": "John Doe",
+  "balance": 1000.0,
+  "status": "PENDING"
+}
+```
+
+### 2. Get All Accounts
+#### Endpoint
+- **URL**: `/accounts`
+- **HTTP Method**: `GET`
+- **Response**: List of `Account` objects
+
+#### Description
+This endpoint retrieves all existing accounts. It returns a list of `Account` objects.
+
+#### Example Request
+```json
+GET /accounts
+```
+
+#### Example Response
+```json
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "balance": 1000.0,
+    "status": "PENDING"
+  },
+  {
+    "id": 2,
+    "name": "Jane Smith",
+    "balance": 2000.0,
+    "status": "APPROVED"
+  }
+]
+```
+
+### 3. Approve Account
+#### Endpoint
+- **URL**: `/accounts/approve/{id}`
+- **HTTP Method**: `PUT`
+- **Path Variable**: `id` (Long)
+- **Response**: `Account` object
+
+#### Description
+This endpoint approves an account by its ID. It accepts the account ID as a path variable and returns the updated `Account` object.
+
+#### Example Request
+```json
+PUT /accounts/approve/1
+```
+
+#### Example Response
+```json
+{
+  "id": 1,
+  "name": "John Doe",
+  "balance": 1000.0,
+  "status": "APPROVED"
+}
+```
+
+## Methods
+
+### openAccount
+```java
+@PostMapping("/open")
+public Account openAccount(@RequestBody Account account) {
+    return accountService.openAccount(account);
+}
+```
+- **Parameters**: `Account` object (request body)
+- **Returns**: `Account` object
+- **Description**: Opens a new account.
+
+### getAllAccounts
+```java
+@GetMapping
+public List<Account> getAllAccounts() {
+    return accountService.getAllAccounts();
+}
+```
+- **Parameters**: None
+- **Returns**: List of `Account` objects
+- **Description**: Retrieves all accounts.
+
+### approveAccount
+```java
+@PutMapping("/approve/{id}")
+public Account approveAccount(@PathVariable Long id) {
+    return accountService.approveAccount(id);
+}
+```
+- **Parameters**: `id` (Long) - Path variable
+- **Returns**: `Account` object
+- **Description**: Approves an account by its ID.
+
+## Conclusion
+The `AccountController`
