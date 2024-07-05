@@ -1,0 +1,76 @@
+# Documentation for CPU and Main Classes
+
+## Class: CPU
+
+The `CPU` class represents a central processing unit with a price attribute and contains two nested classes: `Processor` and `RAM`.
+
+### Attributes:
+- `double price`: The price of the CPU.
+
+### Nested Classes:
+
+#### Class: Processor
+A nested class within `CPU` that represents the processor component of the CPU.
+
+##### Attributes:
+- `double cores`: The number of cores in the processor.
+- `String manufacturer`: The manufacturer of the processor.
+
+##### Methods:
+- `double getCache()`: Returns the cache size of the processor. In this implementation, it always returns `4.3`.
+
+#### Class: RAM
+A protected nested class within `CPU` that represents the RAM component of the CPU.
+
+##### Attributes:
+- `double memory`: The amount of memory in the RAM.
+- `String manufacturer`: The manufacturer of the RAM.
+
+##### Methods:
+- `double getClockSpeed()`: Returns the clock speed of the RAM. In this implementation, it always returns `5.5`.
+
+## Class: Main
+
+The `Main` class contains the `main` method which serves as the entry point for the program.
+
+### Methods:
+
+#### `public static void main(String[] args)`
+The main method where the program execution begins.
+
+##### Functionality:
+1. Creates an instance of the `CPU` class.
+2. Creates an instance of the nested `Processor` class using the `CPU` instance.
+3. Creates an instance of the nested `RAM` class using the `CPU` instance.
+4. Prints the cache size of the processor by calling `processor.getCache()`.
+5. Prints the clock speed of the RAM by calling `ram.getClockSpeed()`.
+
+### Example Usage:
+```java
+public class Main {
+    public static void main(String[] args) {
+        // create object of Outer class CPU
+        CPU cpu = new CPU();
+
+        // create an object of inner class Processor using outer class
+        CPU.Processor processor = cpu.new Processor();
+
+        // create an object of inner class RAM using outer class CPU
+        CPU.RAM ram = cpu.new RAM();
+
+        // Print the cache size of the processor
+        System.out.println("Processor Cache = " + processor.getCache());
+
+        // Print the clock speed of the RAM
+        System.out.println("Ram Clock speed = " + ram.getClockSpeed());
+    }
+}
+```
+
+### Output:
+```
+Processor Cache = 4.3
+Ram Clock speed = 5.5
+```
+
+This documentation provides an overview of the `CPU` and `Main` classes, their attributes, methods, and an example of how to use them.
