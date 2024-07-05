@@ -1,0 +1,68 @@
+# AccountService Documentation
+
+## Overview
+The `AccountService` class is responsible for managing account-related operations such as opening new accounts, retrieving all accounts, and approving accounts. It interacts with the `AccountRepository` for database operations and the `NotificationService` for sending notifications to customers.
+
+## Dependencies
+- `AccountRepository`: Handles CRUD operations for `Account` entities.
+- `NotificationService`: Sends notifications to customers regarding their account status.
+
+## Methods
+
+### openAccount(Account account)
+Opens a new account with a status of "Pending Approval" and saves it to the database. It also notifies the customer about the new account.
+
+#### Parameters:
+- `Account account`: The account object to be opened.
+
+#### Returns:
+- `Account`: The saved account object with the status set to "Pending Approval".
+
+#### Example:
+```java
+Account newAccount = new Account();
+newAccount.setName("John Doe");
+Account savedAccount = accountService.openAccount(newAccount);
+```
+
+### getAllAccounts()
+Retrieves all accounts from the database.
+
+#### Returns:
+- `List<Account>`: A list of all account objects.
+
+#### Example:
+```java
+List<Account> accounts = accountService.getAllAccounts();
+```
+
+### approveAccount(Long accountId)
+Approves an account by changing its status to "Approved" and saves the updated account to the database. It also notifies the customer about the approval.
+
+#### Parameters:
+- `Long accountId`: The ID of the account to be approved.
+
+#### Returns:
+- `Account`: The updated account object with the status set to "Approved".
+
+#### Throws:
+- `RuntimeException`: If the account with the specified ID is not found.
+
+#### Example:
+```java
+Long accountId = 1L;
+Account approvedAccount = accountService.approveAccount(accountId);
+```
+
+## Annotations
+- `@Autowired`: Used to inject the dependencies `AccountRepository` and `NotificationService` into the `AccountService` class.
+
+## Usage
+To use the `AccountService` class, you need to have instances of `AccountRepository` and `NotificationService` available in your Spring application context. The `AccountService` class will automatically wire these dependencies using Spring's dependency injection mechanism.
+
+```java
+@Autowired
+private AccountService accountService;
+```
+
+You can then call the methods provided by `AccountService` to manage accounts in your application.
