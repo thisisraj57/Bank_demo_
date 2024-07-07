@@ -1,0 +1,26 @@
+Here is the Python code to check if a number is odd:
+
+```python
+# Function to check if a number is odd
+def is_odd(number):
+    """
+    Check if the given number is odd.
+
+    :param number: The number to check.
+    :return: True if the number is odd, False otherwise.
+    """
+    return number % 2 != 0
+
+# Example usage
+number = 5
+if is_odd(number):
+    print(f"{number} is an odd number.")
+else:
+    print(f"{number} is not an odd number.")
+```
+
+### Explanation:
+- The code defines a function named `is_odd` that takes a single argument `number`.
+- The function checks if the number is odd by using the modulus operator `%`. If the remainder when `number` is divided by 2 is not zero (`number % 2 != 0`), the number is odd.
+- The function returns `True` if the number is odd and `False` otherwise.
+- An example usage is provided where the function is called with the number `5`, and it prints whether the number is odd or not.
