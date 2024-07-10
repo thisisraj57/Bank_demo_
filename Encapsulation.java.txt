@@ -1,0 +1,28 @@
+**Class: Area**
+
+**Purpose:**
+Calculates the area of a rectangle.
+
+**Fields:**
+
+* **length:** The length of the rectangle.
+* **breadth:** The breadth of the rectangle.
+
+**Constructor:**
+
+* **Area(int length, int breadth):** Initializes the length and breadth fields with the specified values.
+
+**Methods:**
+
+* **getArea():** Calculates and prints the area of the rectangle.
+
+**Class: Main**
+
+**Purpose:**
+Demonstrates the use of the Area class.
+
+**Method:**
+
+* **main(String[] args):**
+    * Creates an instance of the Area class with a length of 5 and a breadth of 6.
+    * Calls the getArea() method on the Area instance to calculate and print the area.
