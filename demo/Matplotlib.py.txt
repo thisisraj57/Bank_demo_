@@ -1,0 +1,37 @@
+It looks like you didn't provide any additional input. If you have any specific requests or need further assistance, please let me know! Here is the updated Python code again for your reference:
+
+```python
+# Function to check if a number is prime
+def is_prime(number):
+    # Edge cases: numbers less than 2 are not prime
+    if number < 2:
+        return False
+    # Check for factors from 2 to the square root of the number
+    for i in range(2, int(number ** 0.5) + 1):
+        if number % i == 0:
+            return False
+    return True
+
+# Function to check if a number is odd
+def is_odd(number):
+    return number % 2 != 0
+
+# Example usage
+num = 29
+if is_prime(num):
+    print(f"{num} is a prime number.")
+else:
+    print(f"{num} is not a prime number.")
+
+if is_odd(num):
+    print(f"{num} is an odd number.")
+else:
+    print(f"{num} is not an odd number.")
+```
+
+### Explanation:
+- The `is_prime` function checks if a number is prime by verifying that it has no divisors other than 1 and itself.
+- The `is_odd` function checks if a number is odd by verifying that it is not divisible by 2.
+- The example usage demonstrates how to use both functions to check if the number 29 is prime and odd.
+
+Feel free to ask if you need any more help!
