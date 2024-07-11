@@ -13,3 +13,7 @@ plt.plot(x, y)
 plt.grid()
 
 plt.show()
+
+
+
+Kanishka Raj
