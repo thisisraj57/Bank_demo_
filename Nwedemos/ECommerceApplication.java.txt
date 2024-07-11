@@ -1,0 +1,168 @@
+Product(Long id) {
+        productRepository.deleteById(id);
+    }
+}
+```
+
+```java
+// CustomerService.java
+package com.example.ecommerce.service;
+
+import com.example.ecommerce.model.Customer;
+import com.example.ecommerce.repository.CustomerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class CustomerService {
+    @Autowired
+    private CustomerRepository customerRepository;
+
+    public List<Customer> getAllCustomers() {
+        return customerRepository.findAll();
+    }
+
+    public Customer getCustomerById(Long id) {
+        return customerRepository.findById(id).orElse(null);
+    }
+
+    public Customer saveCustomer(Customer customer) {
+        return customerRepository.save(customer);
+    }
+
+    public void deleteCustomer(Long id) {
+        customerRepository.deleteById(id);
+    }
+}
+```
+
+```java
+// PaymentService.java
+package com.example.ecommerce.service;
+
+import com.example.ecommerce.model.Payment;
+import com.example.ecommerce.repository.PaymentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class PaymentService {
+    @Autowired
+    private PaymentRepository paymentRepository;
+
+    public List<Payment> getAllPayments() {
+        return paymentRepository.findAll();
+    }
+
+    public Payment getPaymentById(Long id) {
+        return paymentRepository.findById(id).orElse(null);
+    }
+
+    public Payment savePayment(Payment payment) {
+        return paymentRepository.save(payment);
+    }
+
+    public void deletePayment(Long id) {
+        paymentRepository.deleteById(id);
+    }
+}
+```
+
+```java
+// UserAccountService.java
+package com.example.ecommerce.service;
+
+import com.example.ecommerce.model.UserAccount;
+import com.example.ecommerce.repository.UserAccountRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class UserAccountService {
+    @Autowired
+    private UserAccountRepository userAccountRepository;
+
+    public List<UserAccount> getAllUserAccounts() {
+        return userAccountRepository.findAll();
+    }
+
+    public UserAccount getUserAccountById(Long id) {
+        return userAccountRepository.findById(id).orElse(null);
+    }
+
+    public UserAccount saveUserAccount(UserAccount userAccount) {
+        return userAccountRepository.save(userAccount);
+    }
+
+    public void deleteUserAccount(Long id) {
+        userAccountRepository.deleteById(id);
+    }
+}
+```
+
+### Step 5: Create Controller Classes
+
+```java
+// ProductController.java
+package com.example.ecommerce.controller;
+
+import com.example.ecommerce.model.Product;
+import com.example.ecommerce.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/products")
+public class ProductController {
+    @Autowired
+    private ProductService productService;
+
+    @GetMapping
+    public List<Product> getAllProducts() {
+        return productService.getAllProducts();
+    }
+
+    @GetMapping("/{id}")
+    public Product getProductById(@PathVariable Long id) {
+        return productService.getProductById(id);
+    }
+
+    @PostMapping
+    public Product createProduct(@RequestBody Product product) {
+        return productService.saveProduct(product);
+    }
+
+    @PutMapping("/{id}")
+    public Product updateProduct(@PathVariable Long id, @RequestBody Product product) {
+        product.setId(id);
+        return productService.saveProduct(product);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteProduct(@PathVariable Long id) {
+        productService.deleteProduct(id);
+    }
+}
+```
+
+```java
+// CustomerController.java
+package com.example.ecommerce.controller;
+
+import com.example.ecommerce.model.Customer;
+import com.example.ecommerce.service.CustomerService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@Request
