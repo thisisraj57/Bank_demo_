@@ -1,0 +1,118 @@
+# TransferFunds Component Documentation
+
+## Overview
+
+The `TransferFunds` component is a React functional component that allows users to transfer funds to another person using either their email address or mobile number. This component provides flexibility in how users can send money to friends and family, supporting person-to-person transfers via Zelle.
+
+## Features
+
+- **Email and Mobile Number Support**: Users can choose to transfer funds using either the recipient's email address or mobile number.
+- **Email Validation**: Ensures that the email address entered is in a proper format before processing the transfer.
+- **Confirmation Message**: Displays a confirmation message to the user once the transfer is successfully processed.
+
+## Component Structure
+
+### State Variables
+
+- `recipient`: Stores the recipient's email address or mobile number.
+- `amount`: Stores the amount to be transferred.
+- `useEmail`: Boolean flag to determine whether to use email or mobile number for the transfer.
+- `confirmation`: Stores the confirmation message after the transfer is processed.
+
+### Functions
+
+- `validateEmail(email)`: Validates the email address format using a regular expression.
+- `handleTransfer()`: Handles the transfer process, including email validation and setting the confirmation message.
+
+### JSX Elements
+
+- **Radio Buttons**: Allow users to choose between using an email address or a mobile number.
+- **Input Fields**: For entering the recipient's information and the transfer amount.
+- **Transfer Button**: Initiates the transfer process.
+- **Confirmation Message**: Displays the confirmation message after the transfer is processed.
+
+## Code
+
+```javascript
+import React, { useState } from 'react';
+
+function TransferFunds() {
+    const [recipient, setRecipient] = useState('');
+    const [amount, setAmount] = useState('');
+    const [useEmail, setUseEmail] = useState(true);
+    const [confirmation, setConfirmation] = useState('');
+
+    const validateEmail = (email) => {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(String(email).toLowerCase());
+    };
+
+    const handleTransfer = () => {
+        if (useEmail && !validateEmail(recipient)) {
+            alert('Please enter a valid email address.');
+            return;
+        }
+
+        // Simulate transfer processing
+        setTimeout(() => {
+            setConfirmation(`Transfer of $${amount} to ${recipient} was successful.`);
+            // Here you would typically call an API to process the transfer
+        }, 1000);
+    };
+
+    return (
+        <div>
+            <h2>Transfer Funds</h2>
+            <div>
+                <label>
+                    <input
+                        type="radio"
+                        checked={useEmail}
+                        onChange={() => setUseEmail(true)}
+                    />
+                    Use Email
+                </label>
+                <label>
+                    <input
+                        type="radio"
+                        checked={!useEmail}
+                        onChange={() => setUseEmail(false)}
+                    />
+                    Use Mobile Number
+                </label>
+            </div>
+            <div>
+                <label>
+                    {useEmail ? 'Recipient Email:' : 'Recipient Mobile Number:'}
+                    <input
+                        type="text"
+                        value={recipient}
+                        onChange={(e) => setRecipient(e.target.value)}
+                    />
+                </label>
+            </div>
+            <div>
+                <label>
+                    Amount:
+                    <input
+                        type="number"
+                        value={amount}
+                        onChange={(e) => setAmount(e.target.value)}
+                    />
+                </label>
+            </div>
+            <button onClick={handleTransfer}>Transfer</button>
+            {confirmation && <p>{confirmation}</p>}
+        </div>
+    );
+}
+
+export default TransferFunds;
+```
+
+## Usage
+
+To use the `TransferFunds` component, simply import it into your React application and include it in your JSX:
+
+```javascript
+import React from
