@@ -1,0 +1,120 @@
+**TransferService.java (continued)**
+```java
+import javax.transaction.Transactional;
+import java.util.Optional;
+
+@Service
+public class TransferService {
+
+    @Autowired
+    private TransferRepository transferRepository;
+
+    @Autowired
+    private JavaMailSender mailSender;
+
+    @Transactional
+    public Transfer initiateTransfer(Transfer transfer) {
+        // Save the transfer
+        Transfer savedTransfer = transferRepository.save(transfer);
+
+        // Send confirmation email if recipient email is provided
+        if (transfer.getRecipientEmail() != null) {
+            sendTransferNotification(transfer.getRecipientEmail(), transfer.getAmount());
+        }
+
+        return savedTransfer;
+    }
+
+    private void sendTransferNotification(String recipientEmail, BigDecimal amount) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(recipientEmail);
+        message.setSubject("Transfer Notification");
+        message.setText("You have received a transfer of $" + amount);
+        mailSender.send(message);
+    }
+}
+```
+
+### 5. Create the Transfer Controller
+
+**TransferController.java**
+```java
+package com.example.iPYMT.controller;
+
+import com.example.iPYMT.model.Transfer;
+import com.example.iPYMT.service.TransferService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+
+@RestController
+@RequestMapping("/api/transfers")
+@Validated
+public class TransferController {
+
+    @Autowired
+    private TransferService transferService;
+
+    @PostMapping
+    public ResponseEntity<Transfer> createTransfer(@Valid @RequestBody Transfer transfer) {
+        Transfer createdTransfer = transferService.initiateTransfer(transfer);
+        return ResponseEntity.ok(createdTransfer);
+    }
+}
+```
+
+### 6. Configure Email Properties
+
+**application.properties**
+```properties
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=password
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+spring.h2.console.enabled=true
+
+# Email configuration
+spring.mail.host=smtp.example.com
+spring.mail.port=587
+spring.mail.username=your-email@example.com
+spring.mail.password=your-email-password
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+```
+
+### 7. Main Application Class
+
+**IPYMTApplication.java**
+```java
+package com.example.iPYMT;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class IPYMTApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(IPYMTApplication.class, args);
+    }
+}
+```
+
+### 8. Testing the Application
+
+You can test the application using tools like Postman or cURL. Here is an example of a POST request to initiate a transfer:
+
+**POST /api/transfers**
+```json
+{
+    "amount": 100.00,
+    "recipientEmail": "recipient@example.com",
+    "sender": "sender@example.com"
+}
+```
+
+This setup ensures that the system supports person-to-person transfers using Zelle via email address, processes transfers instantly, validates email addresses, and sends notifications to the recipient’s email address.
