@@ -1,0 +1,60 @@
+Postman or cURL.
+
+### Step 8: Testing the API
+
+You can use Postman or cURL to test the API. Below are examples of how to test the API using both tools.
+
+#### Using Postman
+
+1. Open Postman and create a new POST request.
+2. Set the URL to `http://localhost:8080/api/transfers`.
+3. Set the request body to JSON format and include the transfer details. For example:
+
+```json
+{
+    "sender": "John Doe",
+    "recipient": "Jane Smith",
+    "recipientEmail": "jane.smith@example.com",
+    "amount": 100.00
+}
+```
+
+4. Send the request and check the response. You should receive a confirmation of the transfer.
+
+#### Using cURL
+
+Open a terminal and use the following cURL command to test the API:
+
+```sh
+curl -X POST http://localhost:8080/api/transfers \
+-H "Content-Type: application/json" \
+-d '{
+    "sender": "John Doe",
+    "recipient": "Jane Smith",
+    "recipientEmail": "jane.smith@example.com",
+    "amount": 100.00
+}'
+```
+
+You should see a response similar to the following:
+
+```json
+{
+    "id": 1,
+    "sender": "John Doe",
+    "recipient": "Jane Smith",
+    "recipientEmail": "jane.smith@example.com",
+    "recipientMobile": null,
+    "amount": 100.00
+}
+```
+
+### Summary
+
+This Spring Boot application allows customers to transfer funds using Zelle via email address. The application includes:
+- An entity class (`Transfer`) to represent the transfer.
+- A repository interface (`TransferRepository`) to handle database operations.
+- A service class (`TransferService`) to handle business logic.
+- A controller class (`TransferController`) to handle HTTP requests.
+
+The application also includes validation for the email address and sends confirmation and notification messages upon successful transfer. You can test the API using Postman or cURL to ensure it works as expected.
