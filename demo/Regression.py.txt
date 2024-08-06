@@ -1,0 +1,71 @@
+# Documentation for Polynomial Regression Plotting Code
+
+## Overview
+This script demonstrates how to perform polynomial regression on a given set of data points and visualize the results using a scatter plot and a fitted polynomial curve. The script uses the `numpy` library for numerical operations and `matplotlib` for plotting.
+
+## Dependencies
+- `numpy`: A fundamental package for scientific computing with Python.
+- `matplotlib`: A plotting library for creating static, animated, and interactive visualizations in Python.
+
+## Code Explanation
+
+### Import Libraries
+```python
+import numpy
+import matplotlib.pyplot as plt
+```
+- `numpy` is imported for numerical operations, specifically for polynomial fitting.
+- `matplotlib.pyplot` is imported for creating plots.
+
+### Data Points
+```python
+x = [1, 2, 3, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 18, 19, 21, 22]
+y = [100, 90, 80, 60, 60, 55, 60, 65, 70, 70, 75, 76, 78, 79, 90, 99, 99, 100]
+```
+- `x` and `y` are lists of data points representing the independent and dependent variables, respectively.
+
+### Polynomial Regression Model
+```python
+mymodel = numpy.poly1d(numpy.polyfit(x, y, 3))
+```
+- `numpy.polyfit(x, y, 3)` fits a polynomial of degree 3 to the data points `(x, y)`.
+- `numpy.poly1d` creates a polynomial object from the coefficients returned by `numpy.polyfit`.
+
+### Generate Line for Plotting
+```python
+myline = numpy.linspace(1, 22, 100)
+```
+- `numpy.linspace(1, 22, 100)` generates 100 evenly spaced values between 1 and 22. This will be used to plot the polynomial curve.
+
+### Plotting
+```python
+plt.scatter(x, y)
+plt.plot(myline, mymodel(myline))
+plt.show()
+```
+- `plt.scatter(x, y)` creates a scatter plot of the original data points.
+- `plt.plot(myline, mymodel(myline))` plots the polynomial regression curve.
+- `plt.show()` displays the plot.
+
+## Usage
+1. Ensure that `numpy` and `matplotlib` are installed in your Python environment.
+2. Copy and paste the code into a Python script or Jupyter Notebook.
+3. Run the script to see the scatter plot of the data points and the fitted polynomial curve.
+
+## Example
+```python
+import numpy
+import matplotlib.pyplot as plt
+
+x = [1, 2, 3, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 18, 19, 21, 22]
+y = [100, 90, 80, 60, 60, 55, 60, 65, 70, 70, 75, 76, 78, 79, 90, 99, 99, 100]
+
+mymodel = numpy.poly1d(numpy.polyfit(x, y, 3))
+
+myline = numpy.linspace(1, 22, 100)
+
+plt.scatter(x, y)
+plt.plot(myline, mymodel(myline))
+plt.show()
+```
+Running this example will display a scatter plot of the data points and a polynomial curve fitted to the data.
