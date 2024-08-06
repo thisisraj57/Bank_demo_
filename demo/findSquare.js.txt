@@ -1,0 +1,40 @@
+# Documentation for `findSquare` Function
+
+## Overview
+The `findSquare` function is a simple utility designed to calculate the square of a given number. This documentation provides a detailed explanation of the function, its parameters, return value, and usage example.
+
+## Function Definition
+
+```javascript
+// function to find square of a number
+function findSquare(num) {
+
+    // return square
+    return num * num; 
+}
+```
+
+### Parameters
+- `num` (Number): The number for which the square is to be calculated.
+
+### Returns
+- (Number): The square of the input number.
+
+## Example Usage
+
+```javascript
+// call the function and store the result
+let square = findSquare(3);
+
+console.log(`Square: ${square}`);
+```
+
+### Explanation
+1. **Function Call**: The function `findSquare` is called with the argument `3`.
+2. **Calculation**: Inside the function, the square of `3` is calculated by multiplying `3` by itself (`3 * 3`).
+3. **Return Value**: The result of the multiplication (`9`) is returned by the function.
+4. **Storing Result**: The returned value (`9`) is stored in the variable `square`.
+5. **Output**: The value of `square` is logged to the console, resulting in the output: `Square: 9`.
+
+## Summary
+The `findSquare` function is a straightforward utility to compute the square of a number. It takes a single numeric input, multiplies it by itself, and returns the result. This function can be useful in various mathematical computations where squaring a number is required.
