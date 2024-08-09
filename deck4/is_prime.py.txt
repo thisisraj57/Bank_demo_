@@ -1,0 +1,114 @@
+# Prime Number Checker Documentation
+
+## Overview
+
+This documentation provides details on the `is_prime` function, which is used to determine if a given number is a prime number. A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself.
+
+## Function Definition
+
+### `is_prime(number)`
+
+#### Description
+
+The `is_prime` function checks if a given number is a prime number.
+
+#### Parameters
+
+- `number` (int): The number to check for primality.
+
+#### Returns
+
+- `bool`: Returns `True` if the number is prime, `False` otherwise.
+
+#### Example Usage
+
+```python
+num = 29
+if is_prime(num):
+    print(f"{num} is a prime number.")
+else:
+    print(f"{num} is not a prime number.")
+```
+
+## Implementation Details
+
+### Initial Checks
+
+1. **Non-Positive Numbers**:
+    - If the number is less than or equal to 1, it is not prime.
+    ```python
+    if number <= 1:
+        return False
+    ```
+
+2. **Small Prime Numbers**:
+    - If the number is 2 or 3, it is prime.
+    ```python
+    if number <= 3:
+        return True
+    ```
+
+### Divisibility Checks
+
+3. **Divisibility by 2 or 3**:
+    - If the number is divisible by 2 or 3, it is not prime.
+    ```python
+    if number % 2 == 0 or number % 3 == 0:
+        return False
+    ```
+
+### Loop for Further Checks
+
+4. **Loop to Check Divisibility**:
+    - The loop starts with `i = 5` and checks divisibility up to the square root of the number.
+    - It checks if the number is divisible by `i` or `i + 2`.
+    - The loop increments `i` by 6 in each iteration.
+    ```python
+    i = 5
+    while i * i <= number:
+        if number % i == 0 or number % (i + 2) == 0:
+            return False
+        i += 6
+    ```
+
+### Return Statement
+
+5. **Return True**:
+    - If none of the above conditions are met, the number is prime.
+    ```python
+    return True
+    ```
+
+## Complete Code
+
+```python
+# Function to check if a number is prime
+def is_prime(number):
+    """
+    Check if a number is a prime number.
+
+    :param number: The number to check.
+    :return: True if the number is prime, False otherwise.
+    """
+    if number <= 1:
+        return False
+    if number <= 3:
+        return True
+    if number % 2 == 0 or number % 3 == 0:
+        return False
+    i = 5
+    while i * i <= number:
+        if number % i == 0 or number % (i + 2) == 0:
+            return False
+        i += 6
+    return True
+
+# Example usage
+num = 29
+if is_prime(num):
+    print(f"{num} is a prime number.")
+else:
+    print(f"{num} is not a prime number.")
+```
+
+This function efficiently checks for prime numbers using a combination of initial checks and a loop that reduces the number of divisibility tests needed.
