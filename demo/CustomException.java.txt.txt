@@ -1,0 +1,86 @@
+# Java Exception Handling with Custom Exception Class
+
+## Introduction
+
+This code demonstrates how to create and handle custom checked exceptions in Java. A custom exception class is defined to handle specific error conditions in the program.
+
+## Custom Exception Class
+
+### CustomException.java
+
+```java
+public class CustomException extends Exception {
+    public CustomException(String message) {
+        super(message);
+    }
+}
+```
+
+- `CustomException` is a custom checked exception class that extends the `Exception` class.
+- It has a constructor that takes a message as an argument and passes it to the `Exception` class constructor.
+
+## Main Class
+
+### Main.java
+
+```java
+import java.util.ArrayList;
+
+public class Main {
+    private ArrayList<String> languages;
+
+    public Main() {
+        languages = new ArrayList<>();
+        languages.add("Java");
+        languages.add("Python");
+        languages.add("C++");
+    }
+
+    public void checkLanguage(String language) throws CustomException {
+        if (languages.contains(language)) {
+            throw new CustomException("Language " + language + " already exists.");
+        } else {
+            languages.add(language);
+            System.out.println("Language " + language + " has been added.");
+        }
+    }
+
+    public static void main(String[] args) {
+        Main main = new Main();
+
+        try {
+            main.checkLanguage("Swift");
+            main.checkLanguage("Java");
+        } catch (CustomException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
+```
+
+- `Main` class contains an `ArrayList` of strings representing programming languages.
+- `checkLanguage` method checks if a given language already exists in the `ArrayList`.
+- If the language exists, it throws a `CustomException` with a message indicating that the language already exists.
+- If the language does not exist, it adds the language to the `ArrayList` and prints a message indicating that the language has been added.
+
+## Exception Handling
+
+- In the `main` method, an instance of the `Main` class is created.
+- `try...catch` block is used to handle the `CustomException`.
+- If the `checkLanguage` method throws a `CustomException`, the `catch` block is executed and the exception message is printed.
+
+## Usage
+
+- The `checkLanguage` method is called twice, once with a new language ("Swift") and once with an existing language ("Java").
+- The first call adds "Swift" to the `ArrayList` and prints a success message.
+- The second call throws a `CustomException` because "Java" already exists in the `ArrayList`, and the exception message is printed.
+
+## Benefits of Custom Exceptions
+
+- Custom exceptions allow you to create specific error conditions that are relevant to your application.
+- They provide a more informative error message than the generic `Exception` class.
+- They force the caller to handle the exception or declare it in the method signature, ensuring that errors are not ignored.
+
+## Conclusion
+
+This example demonstrates how to create and use custom checked exceptions in Java. By defining a custom exception class, you can handle specific error conditions more effectively and provide more meaningful error messages to the users of your application.
